@@ -1,38 +1,152 @@
-.App {
-  text-align: center;
+/* Colors
+charcoal #375058;
+pewter blue #6899A8;
+coral #C95254;
+dark green #416B56;
+light green #7DA37E;
+*/
+
+/* || Header & Nav */
+/* #nav-bar {
+  background-color: white;
+  box-shadow: 2px 3px 15px rgba(226, 180, 180, 0.2);
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+#logo {
+  color: #c95254;
+  font-size: 2rem;
+  font-family: "Playfair Display", serif;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
+#logo:hover {
+  opacity: 0.7;
 }
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
+#nav-link {
+  color: #c95254;
+  font-size: 1rem;
+  font-family: "Lato", sans-serif;
+}
+
+#nav-link:hover {
+  opacity: 0.9;
+} */
+
+/* || Login/Signup */
+
+.login-form,
+.signup-form {
+  padding: 0.5em;
   display: flex;
   flex-direction: column;
-  align-items: center;
   justify-content: center;
-  font-size: calc(10px + 2vmin);
+  align-items: center;
+  margin: 0.5em;
+  width: 90%;
+  font-family: "Lato", sans-serif;
+  background-color: white;
+  color: #375058;
+  box-shadow: 2px 3px 15px rgba(226, 180, 180, 0.2);
+}
+
+.login-form button,
+.signup-form button {
+  color: white;
+  background: #c95254;
+  border: none;
+  font-family: "Playfair Display", serif;
+  font-size: 1rem;
+}
+
+.login-form h2,
+.signup-form h2 {
+  color: #c95254;
+  padding: 0;
+  font-size: 1.5rem;
+  font-family: "Playfair Display", serif;
+}
+
+/* || Pages */
+
+.home,
+.chat {
+  height: 87vh;
+  display: flex;
+  flex-direction: column;
+}
+
+#chat-form {
+  background: #37505823;
+  padding: 0.25rem;
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  display: flex;
+  height: 3rem;
+  box-sizing: border-box;
+  backdrop-filter: blur(10px);
+}
+
+#chat-input {
+  border: none;
+  padding: 0 1rem;
+  flex-grow: 1;
+  border-radius: 2rem;
+  margin: 0.25rem;
+  font-family: "Lato", sans-serif;
+  font-size: 1rem;
+  color: #375058;
+}
+
+#chat-input:focus {
+  outline: none;
+}
+
+#chat-button {
+  background: #c95254;
+  border: none;
+  padding: 0 1rem;
+  margin: 0.25rem;
+  border-radius: 3px;
+  outline: none;
   color: white;
 }
 
-.App-link {
-  color: #61dafb;
+#messages-list {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  color: #375058;
+  display: flex;
+  flex-direction: column;
+  font-family: "Lato", sans-serif;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+#messages-list > li {
+  padding: 0.5rem 1rem;
+  background-color: #7da37e31;
 }
+
+#messages-list > li:nth-child(odd) {
+  background-color: white;
+}
+
+/* || Footer */
+/* footer {
+  position: fixed;
+  bottom: 0;
+  box-shadow: 2px -1px 3px rgba(206, 205, 205, 0.582);
+  background-color: white;
+  height: 5vh;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  padding-left: 1em;
+}
+
+footer p {
+  color: #416b56;
+  font-size: 0.9rem;
+  font-family: "Lato", sans-serif;
+} */
