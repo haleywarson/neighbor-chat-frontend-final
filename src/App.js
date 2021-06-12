@@ -1,9 +1,8 @@
 import React, { useState, useEffect } from "react";
 import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
-import Home from "./Pages/Home";
 import Chat from "./Pages/Chat";
 import Profile from "./Pages/Profile";
-import ResponsiveDrawer from "./Components/ResponsiveDrawer";
+import ResponsiveDrawer from "./Pages/ResponsiveDrawer";
 
 import "./App.css";
 
@@ -117,7 +116,7 @@ function App() {
             <Chat user={user} />
           </Route>
           <Route path="/">
-            <Home
+            <ResponsiveDrawer
               user={user}
               signup={signup}
               loginToggle={loginToggle}
