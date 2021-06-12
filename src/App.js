@@ -1,10 +1,10 @@
 import React, { useState, useEffect } from "react";
 import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
-import Chat from "./Pages/Chat";
 import Profile from "./Pages/Profile";
 import ResponsiveDrawer from "./Pages/ResponsiveDrawer";
 
 import "./App.css";
+import { FormatColorResetOutlined } from "@material-ui/icons";
 
 const baseUrl = "http://localhost:9000/";
 
@@ -13,7 +13,8 @@ function App() {
   const [user, setUser] = useState({});
   const [error, setError] = useState("");
 
-  const [loginToggle, setLoginToggle] = useState(false);
+  const [displayLoginForm, setDisplayLoginForm] = useState(false);
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
 
   // SIGNUP AND LOGIN/OUT
   const signup = (user) => {
@@ -53,6 +54,7 @@ function App() {
         if (result.token) {
           localStorage.setItem("token", result.token);
           setUser(result.user);
+          setIsLoggedIn(true);
         } else {
           setError(result.error);
         }
@@ -87,41 +89,26 @@ function App() {
   }, []);
 
   // EVENT HANDLERS
-  const displayLogin = () => {
-    setLoginToggle(true);
+  const toggleLoginForm = () => {
+    setDisplayLoginForm(true);
   };
 
   return (
     <Router>
       <div className="app">
-        <nav>
-          <ul>
-            <li>
-              <Link to="/">Home</Link>
-            </li>
-            <li>
-              <Link to="/chat">Chat</Link>
-            </li>
-            <li>
-              <Link to="/profile">Profile</Link>
-            </li>
-          </ul>
-        </nav>
         <Switch>
           <Route path="/profile">
             <Profile />
-          </Route>
-          <Route path="/chat">
-            <Chat user={user} />
           </Route>
           <Route path="/">
             <ResponsiveDrawer
               user={user}
               signup={signup}
-              loginToggle={loginToggle}
+              toggleLoginForm={toggleLoginForm}
               login={login}
               error={error}
               displayLogin={displayLogin}
+              isLoggedIn={isLoggedIn}
             />
           </Route>
         </Switch>

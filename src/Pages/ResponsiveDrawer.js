@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 
 import LoginForm from "../Components/LoginForm";
 import SignupForm from "../Components/SignupForm";
+import Chat from "./Pages/Chat";
 
 import PropTypes from "prop-types";
 import AppBar from "@material-ui/core/AppBar";
@@ -71,9 +72,6 @@ function ResponsiveDrawer(props) {
         <MenuItem component={Link} to="/">
           Home
         </MenuItem>
-        <MenuItem component={Link} to="/chat">
-          Chat
-        </MenuItem>
         <MenuItem component={Link} to="/profile">
           Profile
         </MenuItem>
@@ -137,10 +135,14 @@ function ResponsiveDrawer(props) {
       <main className={classes.content}>
         <div className={classes.toolbar} />
         {props.user.username ? <h2>welcome, {props.user.username}</h2> : null}
-        <SignupForm signup={props.signup} displayLogin={props.displayLogin} />
-        {props.loginToggle ? (
+        <SignupForm signup={props.signup} toggleLoginForm={props.toggleLoginForm} />
+        {props.displayLoginForm ? (
           <LoginForm login={props.login} error={props.error} />
         ) : null}
+        {props.isLoggedIn ?
+          <Chat user={props.user}
+          : null
+        }
       </main>
     </div>
   );

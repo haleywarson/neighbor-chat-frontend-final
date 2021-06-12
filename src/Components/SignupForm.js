@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 
-export default function SignUpForm({ signup, displayLogin }) {
+export default function SignUpForm({ signup, toggleLoginForm }) {
   const [user, setUser] = useState({
     username: "",
     password: "",
@@ -42,7 +42,7 @@ export default function SignUpForm({ signup, displayLogin }) {
       <input variant="dark" type="submit" value="sign up" />
       <p id="sign-up-text">
         Already have an account?{" "}
-        <span onClick={() => displayLogin()}>Log in.</span>
+        <span onClick={() => toggleLoginForm()}>Log in.</span>
       </p>
     </form>
   );
