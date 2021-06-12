@@ -94,7 +94,6 @@ function App() {
   return (
     <Router>
       <div className="app">
-        <ResponsiveDrawer />
         <nav>
           <ul>
             <li>

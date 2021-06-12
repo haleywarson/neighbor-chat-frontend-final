@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 
 import LoginForm from "../Components/LoginForm";
 import SignupForm from "../Components/SignupForm";
@@ -67,9 +68,15 @@ function ResponsiveDrawer(props) {
       <div className={classes.toolbar} />
       <Divider />
       <MenuList>
-        <MenuItem>Home</MenuItem>
-        <MenuItem>Profile</MenuItem>
-        <MenuItem>Groups</MenuItem>
+        <MenuItem component={Link} to="/">
+          Home
+        </MenuItem>
+        <MenuItem component={Link} to="/chat">
+          Chat
+        </MenuItem>
+        <MenuItem component={Link} to="/profile">
+          Profile
+        </MenuItem>
       </MenuList>
     </div>
   );
@@ -129,11 +136,11 @@ function ResponsiveDrawer(props) {
       </nav>
       <main className={classes.content}>
         <div className={classes.toolbar} />
-        {/* {props.user.username ? <h2>welcome, {props.user.username}</h2> : null} */}
+        {props.user.username ? <h2>welcome, {props.user.username}</h2> : null}
         <SignupForm signup={props.signup} displayLogin={props.displayLogin} />
-        {/* {props.loginToggle ? ( */}
-        {/* <LoginForm login={props.login} error={props.error} /> */}
-        {/* ) : null} */}
+        {props.loginToggle ? (
+          <LoginForm login={props.login} error={props.error} />
+        ) : null}
       </main>
     </div>
   );
