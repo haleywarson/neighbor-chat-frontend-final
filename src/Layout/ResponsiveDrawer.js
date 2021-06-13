@@ -65,17 +65,20 @@ function ResponsiveDrawer(props) {
         <div className={classes.toolbar} />
       </Hidden>
       <MenuList>
-        <MenuItem component={Link} to="/profile">
+        <MenuItem id="nav-link" component={Link} to="/profile">
           Profile
         </MenuItem>
-        <MenuItem onClick={() => props.logout()}>Logout</MenuItem>
-        <MenuItem component={Link} to="/chat">
+        <MenuItem id="nav-link" onClick={() => props.logout()}>
+          Logout
+        </MenuItem>
+        <MenuItem id="nav-link" component={Link} to="/chat">
           Chat
         </MenuItem>
         <MenuList>
           {/* {props.user.userchats({id, user.username} => {
             return 
             <MenuItem 
+            id="nested-nav-link"
             key={id} 
             className={classes.nested} 
             user={user} 
@@ -97,7 +100,7 @@ function ResponsiveDrawer(props) {
   return (
     <div className={classes.root}>
       <CssBaseline />
-      <AppBar position="absolute" className={classes.appBar}>
+      <AppBar id="nav-bar" position="absolute" className={classes.appBar}>
         <Toolbar>
           <IconButton
             color="inherit"
@@ -108,7 +111,7 @@ function ResponsiveDrawer(props) {
           >
             <MenuIcon />
           </IconButton>
-          <Typography variant="h6" noWrap>
+          <Typography id="logo" variant="h6" noWrap>
             Neighbor Chat
           </Typography>
         </Toolbar>

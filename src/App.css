@@ -7,34 +7,34 @@ light green #7DA37E;
 */
 
 /* || Header & Nav */
-/* #nav-bar {
+#nav-bar {
   background-color: white;
-  box-shadow: 2px 3px 15px rgba(226, 180, 180, 0.2);
+  color: #c95254;
+  /* display: flex; */
 }
 
 #logo {
   color: #c95254;
-  font-size: 2rem;
+  font-size: 1.6rem;
   font-family: "Playfair Display", serif;
+  /* justify-content: center;
+  align-items: center; */
 }
 
 #logo:hover {
   opacity: 0.7;
 }
 
-#nav-link {
+#nav-link,
+#nested-nav-link {
   color: #c95254;
   font-size: 1rem;
   font-family: "Lato", sans-serif;
 }
 
-#nav-link:hover {
-  opacity: 0.9;
-} */
-
 /* || Login/Signup */
 
-.login-form,
+/* .login-form,
 .signup-form {
   padding: 0.5em;
   display: flex;
@@ -47,25 +47,26 @@ light green #7DA37E;
   background-color: white;
   color: #375058;
   box-shadow: 2px 3px 15px rgba(226, 180, 180, 0.2);
-}
+} */
 
-.login-form button,
-.signup-form button {
+#signup-submit-btn,
+#login-submit-btn {
   color: white;
   background: #c95254;
-  border: none;
-  font-family: "Playfair Display", serif;
-  font-size: 1rem;
+  font-family: "Lato", sans-serif;
 }
 
-.login-form h2,
-.signup-form h2 {
+#login-form h2,
+#signup-form h2 {
   color: #c95254;
   padding: 0;
   font-size: 1.5rem;
   font-family: "Playfair Display", serif;
 }
 
+#login-form-link {
+  color: #c95254;
+}
 /* || Pages */
 
 .home,

@@ -1,49 +1,67 @@
 import React, { useState } from "react";
 
-export default function SignUpForm({ signup, toggleLoginForm }) {
-  const [user, setUser] = useState({
-    username: "",
-    password: "",
-  });
+import { makeStyles } from "@material-ui/core/styles";
+import TextField from "@material-ui/core/TextField";
+import Button from "@material-ui/core/Button";
 
-  const handleChange = (event) => {
-    setUser({
-      ...user,
-      [event.target.name]: event.target.value,
-    });
-  };
+const useStyles = makeStyles((theme) => ({
+  root: {
+    "& > *": {
+      margin: theme.spacing(1),
+      width: "25ch",
+    },
+  },
+}));
+
+export default function SignUpForm({ signup, toggleLoginForm }) {
+  const classes = useStyles();
+
+  const [username, setUsername] = useState("");
+  const [password, setPassword] = useState("");
 
   const handleSubmit = (event) => {
     event.preventDefault();
-    signup(user);
+    signup(username, password);
   };
 
   return (
-    <form className="signup-form" onSubmit={handleSubmit}>
+    <form
+      id="signup-form"
+      onSubmit={handleSubmit}
+      className={classes.root}
+      noValidate
+      autoComplete="off"
+    >
       <h2>Sign Up</h2>
-      <input
-        type="text"
+
+      <TextField
+        id="outlined-size-normal"
+        label="Enter username"
+        variant="outlined"
+        value={username}
+        onChange={(event) => setUsername(event.target.value)}
         name="username"
-        placeholder="Enter username"
-        value={user.username}
-        onChange={handleChange}
-        placeholder="enter username"
+        placeholder="Username"
       />
 
-      <input
-        type="password"
+      <TextField
+        id="outlined-helperText"
+        label="Enter password"
+        variant="outlined"
+        value={password}
+        onChange={(event) => setPassword(event.target.value)}
         name="password"
         placeholder="Password"
-        value={user.password}
-        placeholder="Enter password"
-        onChange={handleChange}
       />
 
-      <input variant="dark" type="submit" value="sign up" />
-      <p id="sign-up-text">
-        Already have an account?{" "}
-        <span onClick={() => toggleLoginForm()}>Log in.</span>
-      </p>
+      <Button variant="contained" type="submit" id="signup-submit-btn">
+        Sign up
+      </Button>
+
+      <p id="sign-up-text">Already have an account? </p>
+      <span id="login-form-link" onClick={() => toggleLoginForm()}>
+        Log in.
+      </span>
     </form>
   );
 }

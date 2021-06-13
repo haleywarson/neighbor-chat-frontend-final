@@ -18,7 +18,7 @@ function App() {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
 
   // SIGNUP AND LOGIN/OUT
-  const signup = (user) => {
+  const signup = (username, password) => {
     fetch(baseUrl + "users", {
       method: "POST",
       headers: {
@@ -27,8 +27,8 @@ function App() {
       },
       body: JSON.stringify({
         user: {
-          username: user.username,
-          password: user.password,
+          username,
+          password,
         },
       }),
     })
