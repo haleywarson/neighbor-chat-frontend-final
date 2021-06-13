@@ -1,10 +1,11 @@
 import React, { useState, useEffect } from "react";
-import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
+import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
+
 import Profile from "./Pages/Profile";
-import ResponsiveDrawer from "./Pages/ResponsiveDrawer";
+import Layout from "./Layout/ResponsiveDrawer";
+import Home from "./Pages/Home";
 
 import "./App.css";
-import { FormatColorResetOutlined } from "@material-ui/icons";
 
 const baseUrl = "http://localhost:9000/";
 
@@ -95,24 +96,24 @@ function App() {
 
   return (
     <Router>
-      <div className="app">
+      <Layout user={user} logout={logout}>
         <Switch>
           <Route path="/profile">
-            <Profile />
+            <Profile user={user} />
           </Route>
           <Route path="/">
-            <ResponsiveDrawer
+            <Home
               user={user}
               signup={signup}
               toggleLoginForm={toggleLoginForm}
               login={login}
               error={error}
-              displayLogin={displayLogin}
               isLoggedIn={isLoggedIn}
+              displayLoginForm={displayLoginForm}
             />
           </Route>
         </Switch>
-      </div>
+      </Layout>
     </Router>
   );
 }

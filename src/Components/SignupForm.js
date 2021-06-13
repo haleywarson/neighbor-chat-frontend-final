@@ -35,7 +35,7 @@ export default function SignUpForm({ signup, toggleLoginForm }) {
         name="password"
         placeholder="Password"
         value={user.password}
-        placeholder="enter password"
+        placeholder="Enter password"
         onChange={handleChange}
       />
 

@@ -1,14 +1,9 @@
 import React from "react";
 import { Link } from "react-router-dom";
 
-import LoginForm from "../Components/LoginForm";
-import SignupForm from "../Components/SignupForm";
-import Chat from "./Pages/Chat";
-
 import PropTypes from "prop-types";
 import AppBar from "@material-ui/core/AppBar";
 import CssBaseline from "@material-ui/core/CssBaseline";
-import Divider from "@material-ui/core/Divider";
 import Drawer from "@material-ui/core/Drawer";
 import Hidden from "@material-ui/core/Hidden";
 import IconButton from "@material-ui/core/IconButton";
@@ -32,10 +27,7 @@ const useStyles = makeStyles((theme) => ({
     },
   },
   appBar: {
-    [theme.breakpoints.up("sm")]: {
-      width: `calc(100% - ${drawerWidth}px)`,
-      marginLeft: drawerWidth,
-    },
+    zIndex: theme.zIndex.drawer + 1,
   },
   menuButton: {
     marginRight: theme.spacing(2),
@@ -52,6 +44,9 @@ const useStyles = makeStyles((theme) => ({
     flexGrow: 1,
     padding: theme.spacing(3),
   },
+  nested: {
+    paddingLeft: theme.spacing(4),
+  },
 }));
 
 function ResponsiveDrawer(props) {
@@ -66,15 +61,32 @@ function ResponsiveDrawer(props) {
 
   const drawer = (
     <div>
-      <div className={classes.toolbar} />
-      <Divider />
+      <Hidden xsDown implementation="css">
+        <div className={classes.toolbar} />
+      </Hidden>
       <MenuList>
-        <MenuItem component={Link} to="/">
-          Home
-        </MenuItem>
         <MenuItem component={Link} to="/profile">
           Profile
         </MenuItem>
+        <MenuItem onClick={() => props.logout()}>Logout</MenuItem>
+        <MenuItem component={Link} to="/chat">
+          Chat
+        </MenuItem>
+        <MenuList>
+          {/* {props.user.userchats({id, user.username} => {
+            return 
+            <MenuItem 
+            key={id} 
+            className={classes.nested} 
+            user={user} 
+                otherUser={user.username} 
+                component={Link} 
+                to={`/chat/${id}`} 
+                >
+                {user.username}
+                </MenuItem>;
+              })} */}
+        </MenuList>
       </MenuList>
     </div>
   );
@@ -85,7 +97,7 @@ function ResponsiveDrawer(props) {
   return (
     <div className={classes.root}>
       <CssBaseline />
-      <AppBar position="fixed" className={classes.appBar}>
+      <AppBar position="absolute" className={classes.appBar}>
         <Toolbar>
           <IconButton
             color="inherit"
@@ -134,15 +146,7 @@ function ResponsiveDrawer(props) {
       </nav>
       <main className={classes.content}>
         <div className={classes.toolbar} />
-        {props.user.username ? <h2>welcome, {props.user.username}</h2> : null}
-        <SignupForm signup={props.signup} toggleLoginForm={props.toggleLoginForm} />
-        {props.displayLoginForm ? (
-          <LoginForm login={props.login} error={props.error} />
-        ) : null}
-        {props.isLoggedIn ?
-          <Chat user={props.user}
-          : null
-        }
+        {props.children}
       </main>
     </div>
   );
