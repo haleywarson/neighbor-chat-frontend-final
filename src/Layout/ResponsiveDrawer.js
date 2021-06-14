@@ -1,6 +1,8 @@
 import React from "react";
 import { Link } from "react-router-dom";
 
+import ChatDialog from "../Components/ChatDialog";
+
 import PropTypes from "prop-types";
 import AppBar from "@material-ui/core/AppBar";
 import CssBaseline from "@material-ui/core/CssBaseline";
@@ -8,10 +10,12 @@ import Drawer from "@material-ui/core/Drawer";
 import Hidden from "@material-ui/core/Hidden";
 import IconButton from "@material-ui/core/IconButton";
 import MenuList from "@material-ui/core/MenuList";
+import Button from "@material-ui/core/Button";
 import MenuItem from "@material-ui/core/MenuItem";
 import MenuIcon from "@material-ui/icons/Menu";
 import Toolbar from "@material-ui/core/Toolbar";
 import Typography from "@material-ui/core/Typography";
+import Divider from "@material-ui/core/Divider";
 import { makeStyles, useTheme } from "@material-ui/core/styles";
 
 const drawerWidth = 240;
@@ -59,21 +63,30 @@ function ResponsiveDrawer(props) {
     setMobileOpen(!mobileOpen);
   };
 
+  const displayChatDialog = () => {
+    <ChatDialog />;
+  };
+
+  const displayNeighbors = () => {
+
+  }
+
   const drawer = (
     <div>
       <Hidden xsDown implementation="css">
         <div className={classes.toolbar} />
       </Hidden>
       <MenuList>
-        <MenuItem id="nav-link" component={Link} to="/profile">
-          Profile
-        </MenuItem>
         <MenuItem id="nav-link" onClick={() => props.logout()}>
           Logout
+        </MenuItem>
+        <MenuItem id="nav-link" component={Link} to="/profile">
+          Profile
         </MenuItem>
         <MenuItem id="nav-link" component={Link} to="/chat">
           Chat
         </MenuItem>
+        {/* NEED GROUPS HERE + CONTACTS */}
         <MenuList>
           {/* {props.user.userchats({id, user.username} => {
             return 
@@ -90,6 +103,15 @@ function ResponsiveDrawer(props) {
                 </MenuItem>;
               })} */}
         </MenuList>
+        {/* <Divider /> */}
+        <MenuItem id="nav-link">
+          <Button variant="outlined" onClick={() => displayChatDialog()}>
+            Start chat
+          </Button>
+          <Button variant="outlined" onClick={() => displayNeighbors()}>
+            Add neighbor
+          </Button>
+        </MenuItem>
       </MenuList>
     </div>
   );

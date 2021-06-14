@@ -47,6 +47,7 @@ export default function LogInForm({ login, error }) {
       <TextField
         id="outlined-helperText"
         label="Enter password"
+        type="password"
         variant="outlined"
         value={password}
         onChange={(event) => setPassword(event.target.value)}
@@ -57,6 +58,7 @@ export default function LogInForm({ login, error }) {
       <Button variant="contained" type="submit" id="login-submit-btn">
         Log in
       </Button>
+      {error ? <p id="error">{error}</p> : null}
     </form>
   );
 }

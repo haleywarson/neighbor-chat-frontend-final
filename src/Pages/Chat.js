@@ -11,10 +11,11 @@ export default function Chat({ user }) {
     socket.on("connect", (message) => {
       console.log("socket connected?", socket.connected);
       console.log("message", message);
+      setMessages([...messages, message]);
     });
-    socket.on("disconnect", () => {
-      console.log("disconnected if false:", socket.connected);
-    });
+    // CLEAN UP THE EFFECT
+    return () => socket.disconnect();
+    // close the connection when the component unmounts.
   }, []);
 
   const scrollMessageList = () => {

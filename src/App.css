@@ -15,7 +15,7 @@ light green #7DA37E;
 
 #logo {
   color: #c95254;
-  font-size: 1.6rem;
+  font-size: 1.4rem;
   font-family: "Playfair Display", serif;
   /* justify-content: center;
   align-items: center; */
@@ -33,21 +33,6 @@ light green #7DA37E;
 }
 
 /* || Login/Signup */
-
-/* .login-form,
-.signup-form {
-  padding: 0.5em;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  margin: 0.5em;
-  width: 90%;
-  font-family: "Lato", sans-serif;
-  background-color: white;
-  color: #375058;
-  box-shadow: 2px 3px 15px rgba(226, 180, 180, 0.2);
-} */
 
 #signup-submit-btn,
 #login-submit-btn {
@@ -67,11 +52,15 @@ light green #7DA37E;
 #login-form-link {
   color: #c95254;
 }
+
+#error {
+  color: #c95254;
+}
+
 /* || Pages */
 
 .home,
 .chat {
-  height: 87vh;
   display: flex;
   flex-direction: column;
 }
@@ -132,22 +121,3 @@ light green #7DA37E;
 #messages-list > li:nth-child(odd) {
   background-color: white;
 }
-
-/* || Footer */
-/* footer {
-  position: fixed;
-  bottom: 0;
-  box-shadow: 2px -1px 3px rgba(206, 205, 205, 0.582);
-  background-color: white;
-  height: 5vh;
-  width: 100%;
-  display: flex;
-  align-items: center;
-  padding-left: 1em;
-}
-
-footer p {
-  color: #416b56;
-  font-size: 0.9rem;
-  font-family: "Lato", sans-serif;
-} */

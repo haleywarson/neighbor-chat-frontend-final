@@ -47,6 +47,7 @@ export default function SignUpForm({ signup, toggleLoginForm }) {
       <TextField
         id="outlined-helperText"
         label="Enter password"
+        type="password"
         variant="outlined"
         value={password}
         onChange={(event) => setPassword(event.target.value)}

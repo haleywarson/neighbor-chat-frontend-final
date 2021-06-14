@@ -12,6 +12,7 @@ const baseUrl = "http://localhost:9000/";
 function App() {
   // STATE
   const [user, setUser] = useState({});
+  // user includes username, password, id
   const [error, setError] = useState("");
 
   const [displayLoginForm, setDisplayLoginForm] = useState(false);
@@ -33,7 +34,7 @@ function App() {
       }),
     })
       .then((response) => response.json())
-      .then((user) => setUser({ user }));
+      .then((user) => setUser({ user }, toggleLoginForm()));
   };
 
   const login = (username, password) => {
@@ -65,7 +66,7 @@ function App() {
   const validateUser = () => {
     let token = localStorage.getItem("token");
     if (token) {
-      fetch(baseUrl + "profile", {
+      fetch(baseUrl + "users", {
         method: "GET",
         headers: {
           Authorization: `Bearer ${token}`,
@@ -75,6 +76,7 @@ function App() {
         .then((result) => {
           if (result.id) {
             setUser(result);
+            console.log("user in state:", result);
           }
         });
     }
@@ -83,11 +85,13 @@ function App() {
   const logout = () => {
     localStorage.removeItem("token");
     setUser({});
+    console.log("logging out - current user is now:", user);
   };
 
   useEffect(() => {
     validateUser();
   }, []);
+  //do i add user object as a dependency above?
 
   // EVENT HANDLERS
   const toggleLoginForm = () => {
