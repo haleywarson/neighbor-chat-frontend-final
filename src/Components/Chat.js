@@ -1,13 +1,14 @@
 import React, { useState, useEffect } from "react";
 import { io } from "socket.io-client";
-import Message from "../Components/Message";
+import Message from "./Message";
 const socket = io("http://127.0.0.1:8080/");
 
-export default function Chat({ user }) {
+export default function Chat({ user, validateUser }) {
   const [messages, setMessages] = useState([]);
   const [message, setMessage] = useState("");
 
   useEffect(() => {
+    validateUser();
     socket.on("connect", (message) => {
       console.log("socket connected?", socket.connected);
       console.log("message", message);
@@ -33,11 +34,13 @@ export default function Chat({ user }) {
     <div className="chat">
       {/* CHAT FEED */}
       <ul id="messages-list">
-        {messages.map((message) => (
-          <li>
-            <Message key={message.id} message={message} user={user} />
-          </li>
-        ))}
+        {messages.length > 0
+          ? messages.map((message, index) => (
+              <li>
+                <Message key={index} message={message} user={user} />
+              </li>
+            ))
+          : null}
       </ul>
       {/* CHAT FORM */}
       <form id="chat-form" action="" onSubmit={handleSubmit}>

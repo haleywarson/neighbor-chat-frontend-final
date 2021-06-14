@@ -1,23 +1,30 @@
-import React from "react";
+import React, { useEffect } from "react";
 
 import LoginForm from "../Components/LoginForm";
 import SignupForm from "../Components/SignupForm";
-import Chat from "../Pages/Chat";
+import Chat from "../Components/Chat";
 
-export default function Home(props) {
+export default function Home({
+  user,
+  validateUser,
+  signup,
+  login,
+  error,
+  setLoginFormToggle,
+  loginFormToggle,
+}) {
+  useEffect(() => {
+    validateUser();
+  }, []);
+
   return (
     <div className="home">
-      {props.isLoggedIn ? (
-        <Chat user={props.user} />
+      {user.length > 0 ? (
+        <Chat user={user} validateUser={validateUser} />
       ) : (
-        <SignupForm
-          signup={props.signup}
-          toggleLoginForm={props.toggleLoginForm}
-        />
+        <SignupForm signup={signup} setLoginFormToggle={setLoginFormToggle} />
       )}
-      {props.displayLoginForm ? (
-        <LoginForm login={props.login} error={props.error} />
-      ) : null}
+      {loginFormToggle ? <LoginForm login={login} error={error} /> : null}
     </div>
   );
 }

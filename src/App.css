@@ -57,6 +57,17 @@ light green #7DA37E;
   color: #c95254;
 }
 
+/* || Layout/responsive drawer */
+
+#start-chat-btn,
+#add-contact-btn {
+  color: white;
+  background: #c95254;
+  font-family: "Lato", sans-serif;
+  margin: 0.3em;
+  font-size: 0.8rem;
+}
+
 /* || Pages */
 
 .home,

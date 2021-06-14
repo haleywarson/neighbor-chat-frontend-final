@@ -13,7 +13,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-export default function SignUpForm({ signup, toggleLoginForm }) {
+export default function SignUpForm({ signup, setLoginFormToggle }) {
   const classes = useStyles();
 
   const [username, setUsername] = useState("");
@@ -60,7 +60,7 @@ export default function SignUpForm({ signup, toggleLoginForm }) {
       </Button>
 
       <p id="sign-up-text">Already have an account? </p>
-      <span id="login-form-link" onClick={() => toggleLoginForm()}>
+      <span id="login-form-link" onClick={() => setLoginFormToggle(true)}>
         Log in.
       </span>
     </form>

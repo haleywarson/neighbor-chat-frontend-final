@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from "react";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 
-import Profile from "./Pages/Profile";
 import Layout from "./Layout/ResponsiveDrawer";
+import Profile from "./Pages/Profile";
 import Home from "./Pages/Home";
 
 import "./App.css";
@@ -15,8 +15,8 @@ function App() {
   // user includes username, password, id
   const [error, setError] = useState("");
 
-  const [displayLoginForm, setDisplayLoginForm] = useState(false);
-  const [isLoggedIn, setIsLoggedIn] = useState(false);
+  const [loginFormToggle, setLoginFormToggle] = useState(false);
+  // is user logged in
 
   // SIGNUP AND LOGIN/OUT
   const signup = (username, password) => {
@@ -34,7 +34,7 @@ function App() {
       }),
     })
       .then((response) => response.json())
-      .then((user) => setUser({ user }, toggleLoginForm()));
+      .then((user) => setUser({ user }, setLoginFormToggle(true)));
   };
 
   const login = (username, password) => {
@@ -56,7 +56,6 @@ function App() {
         if (result.token) {
           localStorage.setItem("token", result.token);
           setUser(result.user);
-          setIsLoggedIn(true);
         } else {
           setError(result.error);
         }
@@ -85,7 +84,6 @@ function App() {
   const logout = () => {
     localStorage.removeItem("token");
     setUser({});
-    console.log("logging out - current user is now:", user);
   };
 
   useEffect(() => {
@@ -94,26 +92,25 @@ function App() {
   //do i add user object as a dependency above?
 
   // EVENT HANDLERS
-  const toggleLoginForm = () => {
-    setDisplayLoginForm(true);
-  };
 
   return (
     <Router>
       <Layout user={user} logout={logout}>
         <Switch>
           <Route path="/profile">
-            <Profile user={user} />
+            {user.length > 0 ? (
+              <Profile user={user} validateUser={validateUser} />
+            ) : null}
           </Route>
           <Route path="/">
             <Home
               user={user}
+              validateUser={validateUser}
               signup={signup}
-              toggleLoginForm={toggleLoginForm}
               login={login}
               error={error}
-              isLoggedIn={isLoggedIn}
-              displayLoginForm={displayLoginForm}
+              setLoginFormToggle={setLoginFormToggle}
+              loginFormToggle={loginFormToggle}
             />
           </Route>
         </Switch>

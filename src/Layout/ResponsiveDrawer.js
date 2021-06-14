@@ -67,9 +67,7 @@ function ResponsiveDrawer(props) {
     <ChatDialog />;
   };
 
-  const displayNeighbors = () => {
-
-  }
+  const displayNeighbors = () => {};
 
   const drawer = (
     <div>
@@ -82,9 +80,6 @@ function ResponsiveDrawer(props) {
         </MenuItem>
         <MenuItem id="nav-link" component={Link} to="/profile">
           Profile
-        </MenuItem>
-        <MenuItem id="nav-link" component={Link} to="/chat">
-          Chat
         </MenuItem>
         {/* NEED GROUPS HERE + CONTACTS */}
         <MenuList>
@@ -105,11 +100,19 @@ function ResponsiveDrawer(props) {
         </MenuList>
         {/* <Divider /> */}
         <MenuItem id="nav-link">
-          <Button variant="outlined" onClick={() => displayChatDialog()}>
+          <Button
+            variant="outlined"
+            id="start-chat-btn"
+            onClick={() => displayChatDialog()}
+          >
             Start chat
           </Button>
-          <Button variant="outlined" onClick={() => displayNeighbors()}>
-            Add neighbor
+          <Button
+            variant="outlined"
+            id="add-contact-btn"
+            onClick={() => displayNeighbors()}
+          >
+            Add contact
           </Button>
         </MenuItem>
       </MenuList>
