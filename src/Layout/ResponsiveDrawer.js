@@ -1,7 +1,8 @@
 import React from "react";
 import { Link } from "react-router-dom";
 
-import ChatDialog from "../Components/ChatDialog";
+import ChatsDialog from "../Components/ChatsDialog";
+import ContactsDialog from "../Components/ContactsDialog";
 
 import PropTypes from "prop-types";
 import AppBar from "@material-ui/core/AppBar";
@@ -63,11 +64,13 @@ function ResponsiveDrawer(props) {
     setMobileOpen(!mobileOpen);
   };
 
-  const displayChatDialog = () => {
-    <ChatDialog />;
+  const displayChats = () => {
+    return <ChatsDialog />;
   };
 
-  const displayNeighbors = () => {};
+  const displayContacts = () => {
+    return <ContactsDialog />;
+  };
 
   const drawer = (
     <div>
@@ -103,14 +106,14 @@ function ResponsiveDrawer(props) {
           <Button
             variant="outlined"
             id="start-chat-btn"
-            onClick={() => displayChatDialog()}
+            onClick={() => displayChats()}
           >
             Start chat
           </Button>
           <Button
             variant="outlined"
             id="add-contact-btn"
-            onClick={() => displayNeighbors()}
+            onClick={() => displayContacts()}
           >
             Add contact
           </Button>

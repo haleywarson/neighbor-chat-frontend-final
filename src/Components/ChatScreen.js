@@ -3,7 +3,7 @@ import { io } from "socket.io-client";
 import Message from "./Message";
 const socket = io("http://127.0.0.1:8080/");
 
-export default function Chat({ user, validateUser }) {
+export default function ChatScreen({ user, validateUser }) {
   const [messages, setMessages] = useState([]);
   const [message, setMessage] = useState("");
 
@@ -14,8 +14,11 @@ export default function Chat({ user, validateUser }) {
       console.log("message", message);
       setMessages([...messages, message]);
     });
+    socket.on("chat message", (message) => {
+      console.log("chat message", message);
+    });
     // CLEAN UP THE EFFECT
-    return () => socket.disconnect();
+    // return () => socket.disconnect();
     // close the connection when the component unmounts.
   }, []);
 

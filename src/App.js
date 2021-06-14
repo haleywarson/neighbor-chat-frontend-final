@@ -5,7 +5,7 @@ import Layout from "./Layout/ResponsiveDrawer";
 import Profile from "./Pages/Profile";
 import SignupForm from "./Components/SignupForm";
 import LoginForm from "./Components/LoginForm";
-import Chat from "./Components/Chat";
+import Chat from "./Components/ChatScreen";
 // import Home from "./Pages/Home";
 
 import "./App.css";
@@ -18,8 +18,8 @@ function App() {
   // user includes username, password, id
   const [error, setError] = useState("");
 
-  const [loginFormToggle, setLoginFormToggle] = useState(false);
   // is user logged in
+  const [loginFormToggle, setLoginFormToggle] = useState(false);
 
   // SIGNUP AND LOGIN/OUT
   const signup = (username, password) => {
@@ -76,9 +76,10 @@ function App() {
       })
         .then((response) => response.json())
         .then((result) => {
-          if (result.id) {
-            setUser(result);
-          }
+          console.log("result", result);
+          // if (result.id) {
+          setUser(result[0]);
+          // }   build profile route
         });
     }
   };
