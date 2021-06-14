@@ -3,7 +3,10 @@ import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 
 import Layout from "./Layout/ResponsiveDrawer";
 import Profile from "./Pages/Profile";
-import Home from "./Pages/Home";
+import SignupForm from "./Components/SignupForm";
+import LoginForm from "./Components/LoginForm";
+import Chat from "./Components/Chat";
+// import Home from "./Pages/Home";
 
 import "./App.css";
 
@@ -75,7 +78,6 @@ function App() {
         .then((result) => {
           if (result.id) {
             setUser(result);
-            console.log("user in state:", result);
           }
         });
     }
@@ -93,6 +95,10 @@ function App() {
 
   // EVENT HANDLERS
 
+  const displayLogin = () => {
+    setLoginFormToggle(true);
+  };
+
   return (
     <Router>
       <Layout user={user} logout={logout}>
@@ -103,15 +109,28 @@ function App() {
             ) : null}
           </Route>
           <Route path="/">
-            <Home
+            {/* <Home
               user={user}
               validateUser={validateUser}
               signup={signup}
               login={login}
               error={error}
-              setLoginFormToggle={setLoginFormToggle}
+              displayLogin={displayLogin}
               loginFormToggle={loginFormToggle}
-            />
+            /> */}
+            {user.username ? (
+              <Chat user={user} validateUser={validateUser} />
+            ) : (
+              <>
+                <SignupForm
+                  signup={signup}
+                  setLoginFormToggle={setLoginFormToggle}
+                />
+                {loginFormToggle ? (
+                  <LoginForm login={login} error={error} />
+                ) : null}
+              </>
+            )}
           </Route>
         </Switch>
       </Layout>

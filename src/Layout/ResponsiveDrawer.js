@@ -75,7 +75,7 @@ function ResponsiveDrawer(props) {
         <div className={classes.toolbar} />
       </Hidden>
       <MenuList>
-        <MenuItem id="nav-link" onClick={() => props.logout()}>
+        <MenuItem id="nav-link" href="/" onClick={() => props.logout()}>
           Logout
         </MenuItem>
         <MenuItem id="nav-link" component={Link} to="/profile">
