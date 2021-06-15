@@ -67,7 +67,7 @@ light green #7DA37E;
 
 /* || Pages */
 
-.chat {
+.chat-screen {
   display: flex;
   flex-direction: column;
   overflow: auto;

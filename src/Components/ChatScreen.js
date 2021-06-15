@@ -3,39 +3,42 @@ import { io } from "socket.io-client";
 import Message from "./Message";
 const socket = io("http://127.0.0.1:8080/");
 
-export default function ChatScreen({ user, validateUser }) {
+export default function ChatScreen({ user, validateUser, allUsers }) {
   const [messages, setMessages] = useState([]);
   const [message, setMessage] = useState("");
 
   useEffect(() => {
     validateUser();
-    socket.on("connect", (message) => {
+    socket.on("connect", () => {
       console.log("socket connected?", socket.connected);
-      setMessages([...messages, message]);
     });
-    socket.on("chat message", (message) => {
-      console.log("chat message", message);
-      setMessages([...messages, message]);
-    });
+
     // CLEAN UP THE EFFECT
     // return () => socket.disconnect();
     // close the connection when the component unmounts.
-  }, [messages]);
+  }, []);
 
-  const scrollMessageList = () => {
-    window.scrollTo(0, document.body.scrollHeight);
-  };
+  // const scrollMessageList = () => {
+  //   window.scrollTo(0, document.body.scrollHeight);
+  // };
 
   const handleSubmit = (event) => {
     event.preventDefault();
-    setMessages([...messages, message]);
     socket.emit("chat message", message);
+    addMessages(message);
     setMessage("");
-    scrollMessageList();
+    // scrollMessageList();
+  };
+
+  const addMessages = (newMessage) => {
+    socket.on("chat message", (newMessage) => {
+      setMessages([...messages, newMessage]);
+      console.log("messages", messages);
+    });
   };
 
   return (
-    <div className="chat">
+    <div className="chat-screen">
       {/* CHAT FEED */}
       <ul id="messages-list">
         {messages.length > 0

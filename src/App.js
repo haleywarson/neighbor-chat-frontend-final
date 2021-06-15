@@ -5,7 +5,7 @@ import Layout from "./Layout/ResponsiveDrawer";
 import Profile from "./Pages/Profile";
 import SignupForm from "./Components/SignupForm";
 import LoginForm from "./Components/LoginForm";
-import Chat from "./Components/ChatScreen";
+import ChatScreen from "./Components/ChatScreen";
 
 import "./App.css";
 
@@ -14,6 +14,7 @@ const baseUrl = "http://localhost:9000/";
 function App() {
   // STATE
   const [user, setUser] = useState({});
+  const [allUsers, setAllUsers] = useState([]);
   // user includes username, password, id
   const [error, setError] = useState("");
 
@@ -88,14 +89,30 @@ function App() {
     setUser({});
   };
 
+  const fetchAllUsers = () => {
+    let token = localStorage.getItem("token");
+    if (token) {
+      fetch(baseUrl + "users", {
+        // use profile route above
+        method: "GET",
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      })
+        .then((response) => response.json())
+        .then((users) => setAllUsers(users));
+    }
+  };
+
   useEffect(() => {
     validateUser();
+    fetchAllUsers();
   }, []);
   //do i add user object as a dependency above?
 
   return (
     <Router>
-      <Layout user={user} logout={logout}>
+      <Layout user={user} logout={logout} allUsers={allUsers}>
         <Switch>
           <Route path="/profile">
             {user.length > 0 ? (
@@ -113,7 +130,11 @@ function App() {
               loginFormToggle={loginFormToggle}
             /> */}
             {user.username ? (
-              <Chat user={user} validateUser={validateUser} />
+              <ChatScreen
+                user={user}
+                validateUser={validateUser}
+                allUsers={allUsers}
+              />
             ) : (
               <>
                 <SignupForm

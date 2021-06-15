@@ -21,12 +21,12 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-export default function ChatsDialog({ handleClose, user }) {
+export default function ChatsDialog({ handleClose, user, allUsers }) {
   const classes = useStyles();
-  // const [neighbor, setNeighbor] = React.useState("");
+  const [recipient, setRecipient] = React.useState("");
 
   const handleChange = (event) => {
-    // setNeighbor(event.target.value);
+    setRecipient(event.target.value);
   };
 
   const handleSubmit = (event) => {
@@ -35,7 +35,7 @@ export default function ChatsDialog({ handleClose, user }) {
   };
 
   return (
-    <div>
+    <div className="chats-dialog">
       <DialogTitle id="form-dialog-title">Start a chat</DialogTitle>
       <DialogContent>
         <DialogContentText>Add a neighbor to start a chat.</DialogContentText>
@@ -44,17 +44,12 @@ export default function ChatsDialog({ handleClose, user }) {
           <Select
             labelId="demo-simple-select-label"
             id="demo-simple-select"
-            // value={age}
             onChange={handleChange}
-            // value={neighbors.neighbor_id}
           >
-            <MenuItem value="">Select neighbor</MenuItem>
-            <MenuItem value="">Select neighbor</MenuItem>
-            <MenuItem value="">Select neighbor</MenuItem>
-            {/* {neighbors.map((neighbor) => (
-              <MenuItem key={neighbor.id} value={neighbor.id}>
-                {neighbor.name}
-              </MenuItem>
+            <MenuItem value="Rita">Rita</MenuItem>
+            <MenuItem value="Bob">Bob</MenuItem>
+            {/* {allUsers.map((u) => (
+              <MenuItem key={u.id}>{u.username}</MenuItem>
             ))} */}
           </Select>
         </FormControl>

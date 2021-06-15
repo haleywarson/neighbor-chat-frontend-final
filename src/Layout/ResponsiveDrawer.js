@@ -64,7 +64,13 @@ function ResponsiveDrawer(props) {
   const handleChatOpen = () => {
     setOpen(true);
     console.log("handle click open");
-    return <ChatsDialog handleClose={handleChatClose} user={props.user} />;
+    return (
+      <ChatsDialog
+        handleClose={handleChatClose}
+        user={props.user}
+        allUsers={props.allUsers}
+      />
+    );
   };
 
   const { window } = props;
