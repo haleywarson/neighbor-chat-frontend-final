@@ -123,12 +123,16 @@ light green #7DA37E;
 
 #messages-list > li {
   padding: 0.5rem 1rem;
-  background-color: #6899a8;
-  color: white;
+  background-color: #6899a84f;
+  border-radius: 13px;
+  color: #375058;
+  margin: 0.2em;
 }
 
 #messages-list > li:nth-child(odd) {
-  background-color: #7da37e;
-  color: white;
-  /* drop-shadow: ; */
+  background-color: #7da37e5f;
+  border-radius: 13px;
+  color: #375058;
+  box-shadow: 30px 10px 4px #f9f9f9;
+  margin: 0.2em;
 }

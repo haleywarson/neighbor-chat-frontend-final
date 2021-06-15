@@ -1,114 +1,114 @@
-// import React, { useContext, useState, useEffect, useCallback } from "react";
-// import useLocalStorage from "../hooks/useLocalStorage";
-// import { useContacts } from "./ContactsProvider";
+import React, { useContext, useState, useEffect, useCallback } from "react";
+import useLocalStorage from "../hooks/useLocalStorage";
+import { useContacts } from "./ContactsProvider";
 // import { useSocket } from "./SocketProvider";
 
-// const ConversationsContext = React.createContext();
+const ChatsContext = React.createContext();
 
-// export function useConversations() {
-//   return useContext(ConversationsContext);
-// }
+export function useChats() {
+  return useContext(ChatsContext);
+}
 
-// export function ConversationsProvider({ id, children }) {
-//   const [conversations, setConversations] = useLocalStorage(
-//     "conversations",
-//     []
-//   );
-//   const [selectedConversationIndex, setSelectedConversationIndex] = useState(0);
-//   const { contacts } = useContacts();
+export function ChatsProvider({ id, children }) {
+  const [chats, setChats] = useLocalStorage(
+    "chats",
+    []
+  );
+  const [selectedChatIndex, setSelectedChatIndex] = useState(0);
+  const { contacts } = useContacts();
 //   const socket = useSocket();
 
-//   function createConversation(recipients) {
-//     setConversations((prevConversations) => {
-//       return [...prevConversations, { recipients, messages: [] }];
-//     });
-//   }
+  function createChat(neighbors) {
+    setChats((prevChats) => {
+      return [...prevChats, { neighbors, messages: [] }];
+    });
+  }
 
-//   const addMessageToConversation = useCallback(
-//     ({ recipients, text, sender }) => {
-//       setConversations((prevConversations) => {
-//         let madeChange = false;
-//         const newMessage = { sender, text };
-//         const newConversations = prevConversations.map((conversation) => {
-//           if (arrayEquality(conversation.recipients, recipients)) {
-//             madeChange = true;
-//             return {
-//               ...conversation,
-//               messages: [...conversation.messages, newMessage],
-//             };
-//           }
+  const addMessageToChat = useCallback(
+    ({ neighbors, text, sender }) => {
+      setChats((prevChats) => {
+        let madeChange = false;
+        const newMessage = { sender, text };
+        const newChats = prevChats.map((chat) => {
+          if (arrayEquality(chat.neighbors, neighbors)) {
+            madeChange = true;
+            return {
+              ...chat,
+              messages: [...chat.messages, newMessage],
+            };
+          }
 
-//           return conversation;
-//         });
+          return chat;
+        });
 
-//         if (madeChange) {
-//           return newConversations;
-//         } else {
-//           return [...prevConversations, { recipients, messages: [newMessage] }];
-//         }
-//       });
-//     },
-//     [setConversations]
-//   );
+        if (madeChange) {
+          return newChats;
+        } else {
+          return [...prevChats, { neighbors, messages: [newMessage] }];
+        }
+      });
+    },
+    [setChats]
+  );
 
-//   useEffect(() => {
-//     if (socket == null) return;
+  useEffect(() => {
+    if (socket == null) return;
 
-//     socket.on("receive-message", addMessageToConversation);
+    socket.on("receive-message", addMessageToChat);
 
-//     return () => socket.off("receive-message");
-//   }, [socket, addMessageToConversation]);
+    return () => socket.off("receive-message");
+  }, [socket, addMessageToChat]);
 
-//   function sendMessage(recipients, text) {
-//     socket.emit("send-message", { recipients, text });
+  function sendMessage(neighbors, text) {
+    socket.emit("send-message", { neighbors, text });
 
-//     addMessageToConversation({ recipients, text, sender: id });
-//   }
+    addMessageToChat({ neighbors, text, sender: id });
+  }
 
-//   const formattedConversations = conversations.map((conversation, index) => {
-//     const recipients = conversation.recipients.map((recipient) => {
-//       const contact = contacts.find((contact) => {
-//         return contact.id === recipient;
-//       });
-//       const name = (contact && contact.name) || recipient;
-//       return { id: recipient, name };
-//     });
+  const formattedChats = chats.map((chat, index) => {
+    const neighbors = chat.neighbors.map((neighbor) => {
+      const contact = contacts.find((contact) => {
+        return contact.id === neighbor;
+      });
+      const name = (contact && contact.name) || neighbor;
+      return { id: neighbor, name };
+    });
 
-//     const messages = conversation.messages.map((message) => {
-//       const contact = contacts.find((contact) => {
-//         return contact.id === message.sender;
-//       });
-//       const name = (contact && contact.name) || message.sender;
-//       const fromMe = id === message.sender;
-//       return { ...message, senderName: name, fromMe };
-//     });
+    const messages = chat.messages.map((message) => {
+      const contact = contacts.find((contact) => {
+        return contact.id === message.sender;
+      });
+      const name = (contact && contact.name) || message.sender;
+      const fromMe = id === message.sender;
+      return { ...message, senderName: name, fromMe };
+    });
 
-//     const selected = index === selectedConversationIndex;
-//     return { ...conversation, messages, recipients, selected };
-//   });
+    const selected = index === selectedChatIndex;
+    return { ...chat, messages, neighbors, selected };
+  });
 
-//   const value = {
-//     conversations: formattedConversations,
-//     selectedConversation: formattedConversations[selectedConversationIndex],
-//     sendMessage,
-//     selectConversationIndex: setSelectedConversationIndex,
-//     createConversation,
-//   };
+  const value = {
+    chats: formattedChats,
+    selectedChat: formattedChats[selectedChatIndex],
+    sendMessage,
+    selectChatIndex: setSelectedChatIndex,
+    createChat,
+  };
 
-//   return (
-//     <ConversationsContext.Provider value={value}>
-//       {children}
-//     </ConversationsContext.Provider>
-//   );
-// }
+  return (
+    <ChatsContext.Provider value={value}>
+      {children}
+    </ChatsContext.Provider>
+  );
+}
 
-// function arrayEquality(a, b) {
-//   if (a.length !== b.length) return false;
+function arrayEquality(a, b) {
+  if (a.length !== b.length) return false;
 
-//   a.sort();
-//   b.sort();
+  a.sort();
+  b.sort();
 
-//   return a.every((element, index) => {
-//     return element === b[index];
-//   });
-// }
+  return a.every((element, index) => {
+    return element === b[index];
+  });
+}

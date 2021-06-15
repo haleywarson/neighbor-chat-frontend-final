@@ -16,7 +16,7 @@ import MenuItem from "@material-ui/core/MenuItem";
 import MenuIcon from "@material-ui/icons/Menu";
 import Toolbar from "@material-ui/core/Toolbar";
 import Typography from "@material-ui/core/Typography";
-import Divider from "@material-ui/core/Divider";
+import Dialog from "@material-ui/core/Dialog";
 import { makeStyles, useTheme } from "@material-ui/core/styles";
 
 const drawerWidth = 240;
@@ -55,6 +55,18 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 function ResponsiveDrawer(props) {
+  const [open, setOpen] = React.useState(false);
+
+  const handleClickOpen = () => {
+    setOpen(true);
+    console.log("handle click open");
+    return <ChatsDialog />;
+  };
+
+  const handleClose = () => {
+    setOpen(false);
+  };
+
   const { window } = props;
   const classes = useStyles();
   const theme = useTheme();
@@ -65,11 +77,13 @@ function ResponsiveDrawer(props) {
   };
 
   const displayChats = () => {
-    return <ChatsDialog />;
+    console.log("display chats");
+    <ChatsDialog />;
   };
 
   const displayContacts = () => {
-    return <ContactsDialog />;
+    console.log("display contacts");
+    <ContactsDialog />;
   };
 
   const drawer = (
@@ -106,14 +120,14 @@ function ResponsiveDrawer(props) {
           <Button
             variant="outlined"
             id="start-chat-btn"
-            onClick={() => displayChats()}
+            onClick={() => handleClickOpen()}
           >
             Start chat
           </Button>
           <Button
             variant="outlined"
             id="add-contact-btn"
-            onClick={() => displayContacts()}
+            onClick={() => handleClickOpen()}
           >
             Add contact
           </Button>
@@ -127,6 +141,16 @@ function ResponsiveDrawer(props) {
 
   return (
     <div className={classes.root}>
+      <Dialog
+        open={open}
+        onClose={handleClose}
+        aria-labelledby="form-dialog-title"
+      >
+        <ChatsDialog
+          handleClickOpen={handleClickOpen}
+          handleClose={handleClose}
+        />
+      </Dialog>
       <CssBaseline />
       <AppBar id="nav-bar" position="absolute" className={classes.appBar}>
         <Toolbar>

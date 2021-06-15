@@ -6,7 +6,6 @@ import Profile from "./Pages/Profile";
 import SignupForm from "./Components/SignupForm";
 import LoginForm from "./Components/LoginForm";
 import Chat from "./Components/ChatScreen";
-// import Home from "./Pages/Home";
 
 import "./App.css";
 
@@ -68,7 +67,8 @@ function App() {
   const validateUser = () => {
     let token = localStorage.getItem("token");
     if (token) {
-      fetch(baseUrl + "users", {
+      fetch(baseUrl + "profile", {
+        // use profile route above
         method: "GET",
         headers: {
           Authorization: `Bearer ${token}`,
@@ -76,10 +76,9 @@ function App() {
       })
         .then((response) => response.json())
         .then((result) => {
-          console.log("result", result);
-          // if (result.id) {
-          setUser(result[0]);
-          // }   build profile route
+          if (result.id) {
+            setUser(result);
+          }
         });
     }
   };
@@ -93,12 +92,6 @@ function App() {
     validateUser();
   }, []);
   //do i add user object as a dependency above?
-
-  // EVENT HANDLERS
-
-  const displayLogin = () => {
-    setLoginFormToggle(true);
-  };
 
   return (
     <Router>

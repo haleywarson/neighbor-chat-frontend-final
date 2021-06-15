@@ -11,16 +11,16 @@ export default function ChatScreen({ user, validateUser }) {
     validateUser();
     socket.on("connect", (message) => {
       console.log("socket connected?", socket.connected);
-      console.log("message", message);
       setMessages([...messages, message]);
     });
     socket.on("chat message", (message) => {
       console.log("chat message", message);
+      setMessages([...messages, message]);
     });
     // CLEAN UP THE EFFECT
     // return () => socket.disconnect();
     // close the connection when the component unmounts.
-  }, []);
+  }, [messages]);
 
   const scrollMessageList = () => {
     window.scrollTo(0, document.body.scrollHeight);
@@ -30,6 +30,7 @@ export default function ChatScreen({ user, validateUser }) {
     event.preventDefault();
     setMessages([...messages, message]);
     socket.emit("chat message", message);
+    setMessage("");
     scrollMessageList();
   };
 
@@ -49,7 +50,7 @@ export default function ChatScreen({ user, validateUser }) {
       <form id="chat-form" action="" onSubmit={handleSubmit}>
         <input
           id="chat-input"
-          autocomplete="off"
+          autoComplete="off"
           value={message}
           onChange={(event) => setMessage(event.target.value)}
         />
