@@ -2,7 +2,6 @@ import React from "react";
 import { Link } from "react-router-dom";
 
 import ChatsDialog from "../Components/ChatsDialog";
-import ContactsDialog from "../Components/ContactsDialog";
 
 import PropTypes from "prop-types";
 import AppBar from "@material-ui/core/AppBar";
@@ -55,16 +54,17 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 function ResponsiveDrawer(props) {
+  // Dialog box state + actions
   const [open, setOpen] = React.useState(false);
 
-  const handleClickOpen = () => {
-    setOpen(true);
-    console.log("handle click open");
-    return <ChatsDialog />;
+  const handleChatClose = () => {
+    setOpen(false);
   };
 
-  const handleClose = () => {
-    setOpen(false);
+  const handleChatOpen = () => {
+    setOpen(true);
+    console.log("handle click open");
+    return <ChatsDialog handleClose={handleChatClose} user={props.user} />;
   };
 
   const { window } = props;
@@ -74,16 +74,6 @@ function ResponsiveDrawer(props) {
 
   const handleDrawerToggle = () => {
     setMobileOpen(!mobileOpen);
-  };
-
-  const displayChats = () => {
-    console.log("display chats");
-    <ChatsDialog />;
-  };
-
-  const displayContacts = () => {
-    console.log("display contacts");
-    <ContactsDialog />;
   };
 
   const drawer = (
@@ -120,16 +110,9 @@ function ResponsiveDrawer(props) {
           <Button
             variant="outlined"
             id="start-chat-btn"
-            onClick={() => handleClickOpen()}
+            onClick={() => handleChatOpen()}
           >
             Start chat
-          </Button>
-          <Button
-            variant="outlined"
-            id="add-contact-btn"
-            onClick={() => handleClickOpen()}
-          >
-            Add contact
           </Button>
         </MenuItem>
       </MenuList>
@@ -143,12 +126,12 @@ function ResponsiveDrawer(props) {
     <div className={classes.root}>
       <Dialog
         open={open}
-        onClose={handleClose}
+        onClose={handleChatClose}
         aria-labelledby="form-dialog-title"
       >
         <ChatsDialog
-          handleClickOpen={handleClickOpen}
-          handleClose={handleClose}
+          handleClickOpen={handleChatOpen}
+          handleClose={handleChatClose}
         />
       </Dialog>
       <CssBaseline />

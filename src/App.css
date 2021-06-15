@@ -70,6 +70,7 @@ light green #7DA37E;
 .chat {
   display: flex;
   flex-direction: column;
+  overflow: auto;
 }
 
 #chat-form {
