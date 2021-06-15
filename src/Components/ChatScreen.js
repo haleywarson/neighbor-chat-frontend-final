@@ -12,29 +12,16 @@ export default function ChatScreen({ user, validateUser, allUsers }) {
     socket.on("connect", () => {
       console.log("socket connected?", socket.connected);
     });
-
-    // CLEAN UP THE EFFECT
-    // return () => socket.disconnect();
-    // close the connection when the component unmounts.
-  }, []);
-
-  // const scrollMessageList = () => {
-  //   window.scrollTo(0, document.body.scrollHeight);
-  // };
+    socket.on("chat message", (newMessage) => {
+      setMessages([...messages, newMessage]);
+    });
+    return () => socket.off("chat message");
+  }, [messages]);
 
   const handleSubmit = (event) => {
     event.preventDefault();
-    socket.emit("chat message", message);
-    addMessages(message);
+    socket.emit("chat message", { user: user.username, message });
     setMessage("");
-    // scrollMessageList();
-  };
-
-  const addMessages = (newMessage) => {
-    socket.on("chat message", (newMessage) => {
-      setMessages([...messages, newMessage]);
-      console.log("messages", messages);
-    });
   };
 
   return (
@@ -43,9 +30,11 @@ export default function ChatScreen({ user, validateUser, allUsers }) {
       <ul id="messages-list">
         {messages.length > 0
           ? messages.map((message, index) => (
-              <li>
-                <Message key={index} message={message} user={user} />
-              </li>
+              <Message
+                key={index}
+                message={message.message}
+                user={message.user}
+              />
             ))
           : null}
       </ul>
