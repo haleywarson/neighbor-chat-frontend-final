@@ -1,6 +1,7 @@
 import React from "react";
 import { Link } from "react-router-dom";
 
+import Logo from "../Assets/Logo.png";
 import ChatsDialog from "../Components/ChatsDialog";
 
 import PropTypes from "prop-types";
@@ -153,7 +154,7 @@ function ResponsiveDrawer(props) {
             <MenuIcon />
           </IconButton>
           <Typography id="logo" variant="h6" noWrap>
-            Neighbor Chat
+            <img src={Logo} /> Neighbor Chat
           </Typography>
         </Toolbar>
       </AppBar>

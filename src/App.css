@@ -14,8 +14,12 @@ light green #7DA37E;
 
 #logo {
   color: #c95254;
-  font-size: 1.4rem;
+  font-size: 2rem;
   font-family: "Playfair Display", serif;
+}
+
+img {
+  width: 30px;
 }
 
 #logo:hover {

@@ -93,7 +93,6 @@ function App() {
     let token = localStorage.getItem("token");
     if (token) {
       fetch(baseUrl + "users", {
-        // use profile route above
         method: "GET",
         headers: {
           Authorization: `Bearer ${token}`,
@@ -108,7 +107,6 @@ function App() {
     validateUser();
     fetchAllUsers();
   }, []);
-  //do i add user object as a dependency above?
 
   return (
     <Router>
@@ -120,7 +118,7 @@ function App() {
             ) : null}
           </Route>
           <Route path="/">
-            {/* <Home
+            {/* <Home           
               user={user}
               validateUser={validateUser}
               signup={signup}

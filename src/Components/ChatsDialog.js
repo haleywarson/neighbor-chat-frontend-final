@@ -48,9 +48,9 @@ export default function ChatsDialog({ handleClose, user, allUsers }) {
           >
             <MenuItem value="Rita">Rita</MenuItem>
             <MenuItem value="Bob">Bob</MenuItem>
-            {/* {allUsers.map((u) => (
+            {allUsers.map((u) => (
               <MenuItem key={u.id}>{u.username}</MenuItem>
-            ))} */}
+            ))}
           </Select>
         </FormControl>
       </DialogContent>
