@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 
 import Button from "@material-ui/core/Button";
 import DialogActions from "@material-ui/core/DialogActions";
@@ -23,7 +23,7 @@ const useStyles = makeStyles((theme) => ({
 
 export default function ChatsDialog(props) {
   const classes = useStyles();
-  const [recipient, setRecipient] = React.useState("");
+  const [recipient, setRecipient] = useState("");
 
   const handleChange = (event) => {
     setRecipient(event.target.value);
@@ -46,11 +46,11 @@ export default function ChatsDialog(props) {
             id="demo-simple-select"
             onChange={handleChange}
           >
-            {/* {props.allUsers.map((user) => (
+            {props.allUsers.map((user) => (
               <MenuItem key={user.id} value={user.id}>
                 {user.username}
               </MenuItem>
-            ))} */}
+            ))}
           </Select>
         </FormControl>
       </DialogContent>

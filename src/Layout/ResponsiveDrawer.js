@@ -64,13 +64,6 @@ function ResponsiveDrawer(props) {
 
   const handleChatOpen = () => {
     setOpen(true);
-    return (
-      <ChatsDialog
-        handleClose={handleChatClose}
-        user={props.user}
-        allUsers={props.allUsers}
-      />
-    );
   };
 
   const { window } = props;
@@ -138,6 +131,8 @@ function ResponsiveDrawer(props) {
         <ChatsDialog
           handleClickOpen={handleChatOpen}
           handleClose={handleChatClose}
+          user={props.user}
+          allUsers={props.allUsers}
         />
       </Dialog>
       <CssBaseline />
