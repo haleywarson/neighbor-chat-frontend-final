@@ -19,7 +19,7 @@ light green #7DA37E;
 }
 
 img {
-  width: 30px;
+  width: 27px;
 }
 
 #logo:hover {
@@ -60,13 +60,13 @@ img {
 
 /* || Layout/responsive drawer */
 
-#start-chat-btn,
-#add-contact-btn {
+#start-chat-btn {
   color: white;
   background: #c95254;
   font-family: "Lato", sans-serif;
   margin: 0.3em;
   font-size: 0.8rem;
+  border: none;
 }
 
 /* || Pages */
@@ -82,12 +82,13 @@ img {
   padding: 0.25rem;
   position: fixed;
   bottom: 0;
-  left: 0;
   right: 0;
+  width: 100%;
   display: flex;
   height: 8vh;
   box-sizing: border-box;
   backdrop-filter: blur(10px);
+  flex-grow: 1;
 }
 
 #chat-input {
@@ -120,7 +121,7 @@ img {
   list-style-type: none;
   margin: 0;
   padding: 0;
-  color: #375058;
+  color: #c95254;
   display: flex;
   flex-direction: column;
   font-family: "Lato", sans-serif;
@@ -138,6 +139,5 @@ img {
   background-color: #7da37e5f;
   border-radius: 13px;
   color: #375058;
-  box-shadow: 30px 10px 4px #f9f9f9;
   margin: 0.2em;
 }

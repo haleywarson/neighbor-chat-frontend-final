@@ -21,7 +21,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-export default function ChatsDialog({ handleClose, user, allUsers }) {
+export default function ChatsDialog(props) {
   const classes = useStyles();
   const [recipient, setRecipient] = React.useState("");
 
@@ -46,19 +46,19 @@ export default function ChatsDialog({ handleClose, user, allUsers }) {
             id="demo-simple-select"
             onChange={handleChange}
           >
-            <MenuItem value="Rita">Rita</MenuItem>
-            <MenuItem value="Bob">Bob</MenuItem>
-            {allUsers.map((u) => (
-              <MenuItem key={u.id}>{u.username}</MenuItem>
-            ))}
+            {/* {props.allUsers.map((user) => (
+              <MenuItem key={user.id} value={user.id}>
+                {user.username}
+              </MenuItem>
+            ))} */}
           </Select>
         </FormControl>
       </DialogContent>
       <DialogActions>
-        <Button onClick={handleClose} color="primary">
+        <Button onClick={props.handleClose} color="primary">
           Cancel
         </Button>
-        <Button onClick={handleClose} color="primary">
+        <Button onClick={props.handleClose} color="primary">
           Start chat
         </Button>
       </DialogActions>

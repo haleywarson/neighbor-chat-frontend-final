@@ -1,7 +1,7 @@
 import React from "react";
 import { Link } from "react-router-dom";
 
-import Logo from "../Assets/Logo.png";
+import Logo from "../Assets/Logo6.png";
 import ChatsDialog from "../Components/ChatsDialog";
 
 import PropTypes from "prop-types";
@@ -64,7 +64,6 @@ function ResponsiveDrawer(props) {
 
   const handleChatOpen = () => {
     setOpen(true);
-    console.log("handle click open");
     return (
       <ChatsDialog
         handleClose={handleChatClose}
@@ -154,7 +153,12 @@ function ResponsiveDrawer(props) {
             <MenuIcon />
           </IconButton>
           <Typography id="logo" variant="h6" noWrap>
-            <img src={Logo} /> Neighbor Chat
+            <img
+              src={Logo}
+              alt="Neighbor Chat logo"
+              href="http://localhost:3000/"
+            />{" "}
+            Neighbor Chat
           </Typography>
         </Toolbar>
       </AppBar>
