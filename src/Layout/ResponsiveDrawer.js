@@ -87,6 +87,9 @@ function ResponsiveDrawer(props) {
         <MenuItem id="nav-link" component={Link} to="/neighbors">
           Neighbors
         </MenuItem>
+        <MenuItem id="nav-link" component={Link} to="/profile">
+          Profile
+        </MenuItem>
         <MenuItem
           id="nav-link"
           onClick={() => props.logout()}
@@ -95,11 +98,8 @@ function ResponsiveDrawer(props) {
         >
           Logout
         </MenuItem>
-        <MenuItem id="nav-link" component={Link} to="/profile">
-          Profile
-        </MenuItem>
-        <MenuList>
-          {/* {props.user.userchats({id, user.username} => {
+        {/* <MenuList> */}
+        {/* {props.user.userchats({id, user.username} => {
             return 
             <MenuItem 
             id="nested-nav-link"
@@ -113,7 +113,7 @@ function ResponsiveDrawer(props) {
                 {user.username}
                 </MenuItem>;
               })} */}
-        </MenuList>
+        {/* </MenuList> */}
         {/* <Divider /> */}
         <MenuItem id="nav-link">
           <Button

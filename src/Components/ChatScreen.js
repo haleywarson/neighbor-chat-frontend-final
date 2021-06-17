@@ -28,6 +28,8 @@ export default function ChatScreen({ user, validateUser, allUsers }) {
 
   return (
     <div className="chat-screen">
+      <h3>Welcome, {user.username}!</h3>
+      <br />
       {/* CHAT FEED */}
       <ul id="messages-list">
         {messages.length > 0
