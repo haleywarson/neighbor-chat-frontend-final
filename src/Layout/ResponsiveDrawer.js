@@ -81,13 +81,20 @@ function ResponsiveDrawer(props) {
         <div className={classes.toolbar} />
       </Hidden>
       <MenuList>
-        <MenuItem id="nav-link" href="/" onClick={() => props.logout()}>
+        <MenuItem id="nav-link" component={Link} to="/">
+          Home
+        </MenuItem>
+        <MenuItem
+          id="nav-link"
+          onClick={() => props.logout()}
+          component={Link}
+          to="/"
+        >
           Logout
         </MenuItem>
         <MenuItem id="nav-link" component={Link} to="/profile">
           Profile
         </MenuItem>
-        {/* NEED GROUPS HERE + CONTACTS */}
         <MenuList>
           {/* {props.user.userchats({id, user.username} => {
             return 
@@ -149,13 +156,8 @@ function ResponsiveDrawer(props) {
           >
             <MenuIcon />
           </IconButton>
-          <Typography id="logo" variant="h6" noWrap>
-            <img
-              src={Logo}
-              alt="Neighbor Chat logo"
-              href="http://localhost:3000/"
-            />{" "}
-            Neighbor Chat
+          <Typography id="logo" variant="h6" noWrap component={Link} to="/">
+            <img src={Logo} alt="Neighbor Chat logo" /> Neighbor Chat
           </Typography>
         </Toolbar>
       </AppBar>

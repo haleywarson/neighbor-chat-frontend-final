@@ -16,6 +16,7 @@ light green #7DA37E;
   color: #c95254;
   font-size: 2rem;
   font-family: "Playfair Display", serif;
+  text-decoration: none;
 }
 
 img {
@@ -175,9 +176,9 @@ img {
 
 #default-profile-pic {
   margin: auto;
-  margin-top: 0.5em;
+  margin-top: 1em;
   width: 55%;
-  opacity: 0.8;
+  opacity: 0.6;
 }
 
 #profile-name {
