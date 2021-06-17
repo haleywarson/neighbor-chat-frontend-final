@@ -142,21 +142,6 @@ img {
   margin: 0.2em;
 }
 
-/* || Profile */
-
-.profile {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-
-.profile-card {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-}
-
 /* Chat dialog box */
 #chats-dialog-title {
   color: #375058;
@@ -177,5 +162,34 @@ img {
 }
 
 #chats-dialog button {
+  color: #c95254;
+}
+
+/* Profile */
+
+.profile {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+#default-profile-pic {
+  width: 50%;
+  margin: auto;
+}
+
+#profile-name {
+  color: #375058;
+  font-family: "Playfair Display", serif;
+  font-size: 1.5rem;
+}
+
+#profile-content {
+  color: #375058;
+  font-family: "Lato", sans-serif;
+  font-size: 1rem;
+}
+
+#profile-edit-btn {
   color: #c95254;
 }

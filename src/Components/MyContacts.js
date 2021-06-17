@@ -1,7 +1,6 @@
-import React, { useEffect } from "react";
+import React from "react";
 
 import "../App.css";
-import defaultProfilePic from "../Assets/DefaultProfilePic.png";
 
 import { makeStyles } from "@material-ui/core/styles";
 import Card from "@material-ui/core/Card";
@@ -21,7 +20,7 @@ const useStyles = makeStyles({
   },
 });
 
-export default function Profile({ user, validateUser }) {
+export default function MyContacts(props) {
   const classes = useStyles();
 
   const editMyProfile = () => {};
@@ -32,36 +31,25 @@ export default function Profile({ user, validateUser }) {
   }, []);
 
   return (
-    <div className="profile">
+    <div className="my-contacts">
       <Card className={classes.root}>
         <CardActionArea>
           <CardMedia
             className={classes.media}
-            image={defaultProfilePic}
-            id="default-profile-pic"
+            image="../Assets/Logo"
             title="Contemplative Reptile"
           />
-          <CardContent id="profile-name">
+          <CardContent>
             <Typography gutterBottom variant="h5" component="h2">
               {user.username}
             </Typography>
-            <Typography
-              variant="body2"
-              color="textSecondary"
-              component="p"
-              id="profile-content"
-            >
+            <Typography variant="body2" color="textSecondary" component="p">
               Address: 1234 Cedar Lane
             </Typography>
           </CardContent>
         </CardActionArea>
         <CardActions>
-          <Button
-            size="small"
-            color="primary"
-            id="profile-edit-btn"
-            onClick={() => editMyProfile()}
-          >
+          <Button size="small" color="primary" onClick={() => editMyProfile()}>
             Edit
           </Button>
         </CardActions>
