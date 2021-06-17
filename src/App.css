@@ -6,6 +6,13 @@ dark green #416B56;
 light green #7DA37E;
 */
 
+/* Overall */
+h2 {
+  color: #c95254;
+  font-size: 1.5rem;
+  font-family: "Playfair Display", serif;
+}
+
 /* || Header & Nav */
 #nav-bar {
   background-color: white;
@@ -195,4 +202,17 @@ img {
 
 #profile-edit-btn {
   color: #c95254;
+}
+
+/* Neighbors */
+
+.user-card {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  overflow: scroll;
+}
+
+#neighbor-card {
+  margin: 0.5em;
 }

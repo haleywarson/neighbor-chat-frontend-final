@@ -84,6 +84,9 @@ function ResponsiveDrawer(props) {
         <MenuItem id="nav-link" component={Link} to="/">
           Home
         </MenuItem>
+        <MenuItem id="nav-link" component={Link} to="/neighbors">
+          Neighbors
+        </MenuItem>
         <MenuItem
           id="nav-link"
           onClick={() => props.logout()}

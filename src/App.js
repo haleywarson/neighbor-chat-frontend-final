@@ -6,6 +6,7 @@ import Profile from "./Pages/Profile";
 import SignupForm from "./Components/SignupForm";
 import LoginForm from "./Components/LoginForm";
 import ChatScreen from "./Components/ChatScreen";
+import Neighbors from "./Pages/Neighbors"
 
 import "./App.css";
 
@@ -124,6 +125,9 @@ function App() {
             {user.username ? (
               <Profile user={user} validateUser={validateUser} />
             ) : null}
+          </Route>
+          <Route path="/neighbors">
+            <Neighbors allUsers={allUsers} validateUser={validateUser} />
           </Route>
           <Route path="/">
             {user.username ? (
