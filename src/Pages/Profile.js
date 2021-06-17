@@ -33,51 +33,54 @@ export default function Profile({ user, validateUser }) {
   }, []);
 
   return (
-    <div className="profile">
-      <Card className={classes.root}>
-        {profileEdit ? (
-          <UpdateProfileForm
-            setProfileEdit={setProfileEdit}
-            validateUser={validateUser}
-            user={user}
-          />
-        ) : (
-          <>
-            <CardActionArea>
-              <CardMedia
-                className={classes.media}
-                image={defaultProfilePic}
-                id="default-profile-pic"
-                title="Contemplative Reptile"
-              />
-              <CardContent id="profile-name">
-                <Typography gutterBottom variant="h5" component="h2">
-                  {user.username}
-                </Typography>
-                <Typography
-                  variant="body2"
-                  color="textSecondary"
-                  component="p"
-                  id="profile-content"
+    <>
+      <h2>Your profile</h2>
+      <div className="profile">
+        <Card className={classes.root}>
+          {profileEdit ? (
+            <UpdateProfileForm
+              setProfileEdit={setProfileEdit}
+              validateUser={validateUser}
+              user={user}
+            />
+          ) : (
+            <>
+              <CardActionArea>
+                <CardMedia
+                  className={classes.media}
+                  image={defaultProfilePic}
+                  id="default-profile-pic"
+                  title="Contemplative Reptile"
+                />
+                <CardContent id="profile-name">
+                  <Typography gutterBottom variant="h5" component="h2">
+                    {user.username}
+                  </Typography>
+                  <Typography
+                    variant="body2"
+                    color="textSecondary"
+                    component="p"
+                    id="profile-content"
+                  >
+                    Address: Enter address here.
+                    {/* {user.address ? { user.address } : "None listed."} */}
+                  </Typography>
+                </CardContent>
+              </CardActionArea>
+              <CardActions>
+                <Button
+                  size="small"
+                  color="primary"
+                  id="profile-edit-btn"
+                  onClick={() => setProfileEdit(true)}
                 >
-                  Address: Enter address here.
-                  {/* {user.address ? { user.address } : "None listed."} */}
-                </Typography>
-              </CardContent>
-            </CardActionArea>
-            <CardActions>
-              <Button
-                size="small"
-                color="primary"
-                id="profile-edit-btn"
-                onClick={() => setProfileEdit(true)}
-              >
-                Edit
-              </Button>
-            </CardActions>
-          </>
-        )}
-      </Card>
-    </div>
+                  Edit
+                </Button>
+              </CardActions>
+            </>
+          )}
+        </Card>
+      </div>
+    </>
   );
 }

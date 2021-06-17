@@ -5,8 +5,8 @@ import Layout from "./Layout/ResponsiveDrawer";
 import Profile from "./Pages/Profile";
 import SignupForm from "./Components/SignupForm";
 import LoginForm from "./Components/LoginForm";
-import ChatScreen from "./Components/ChatScreen";
-import Neighbors from "./Pages/Neighbors"
+import Chat from "./Pages/Chat";
+import Neighbors from "./Pages/Neighbors";
 
 import "./App.css";
 
@@ -131,7 +131,7 @@ function App() {
           </Route>
           <Route path="/">
             {user.username ? (
-              <ChatScreen
+              <Chat
                 user={user}
                 validateUser={validateUser}
                 allUsers={allUsers}

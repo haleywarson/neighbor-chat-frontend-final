@@ -85,7 +85,7 @@ img {
 
 /* || Pages */
 
-.chat-screen {
+.chat {
   display: flex;
   flex-direction: column;
   overflow: auto;
@@ -185,6 +185,7 @@ img {
   display: flex;
   justify-content: center;
   align-items: center;
+  margin-top: 0.5em;
 }
 
 #default-profile-pic {

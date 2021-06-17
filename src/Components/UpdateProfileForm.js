@@ -21,11 +21,7 @@ const useStyles = makeStyles({
   },
 });
 
-export default function UpdateProfileForm({
-  user,
-  setProfileEdit,
-  validateUser,
-}) {
+export default function UpdateProfileForm({ user, setProfileEdit }) {
   const classes = useStyles();
 
   //   const [formValues, setFormValues] = useState({
@@ -44,11 +40,6 @@ export default function UpdateProfileForm({
   const updateProfile = (event) => {
     console.log("updating profile");
   };
-
-  //   fetch user and set user data to state
-  useEffect(() => {
-    validateUser();
-  }, []);
 
   return (
     <Card className={classes.root}>

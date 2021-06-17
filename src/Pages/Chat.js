@@ -1,11 +1,11 @@
 import React, { useState, useEffect } from "react";
 import { io } from "socket.io-client";
 
-import Message from "./Message";
+import Message from "../Components/Message";
 
 const socket = io("http://127.0.0.1:8080/");
 
-export default function ChatScreen({ user, validateUser, allUsers }) {
+export default function Chat({ user, validateUser, allUsers }) {
   const [messages, setMessages] = useState([]);
   const [message, setMessage] = useState("");
 
@@ -27,7 +27,7 @@ export default function ChatScreen({ user, validateUser, allUsers }) {
   };
 
   return (
-    <div className="chat-screen">
+    <div className="chat">
       <h3>Welcome, {user.username}!</h3>
       <br />
       {/* CHAT FEED */}
