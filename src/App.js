@@ -17,6 +17,8 @@ function App() {
   const [allUsers, setAllUsers] = useState([]);
   // user includes username, password, id
   const [error, setError] = useState("");
+  const [myContactsIds, setMyContactsIds] = useState([]);
+  // user includes username, password, id
 
   // is user logged in
   const [loginFormToggle, setLoginFormToggle] = useState(false);
@@ -110,7 +112,13 @@ function App() {
 
   return (
     <Router>
-      <Layout user={user} logout={logout} allUsers={allUsers}>
+      <Layout
+        user={user}
+        logout={logout}
+        allUsers={allUsers}
+        myContactsIds={myContactsIds}
+        setMyContactsIds={setMyContactsIds}
+      >
         <Switch>
           <Route path="/profile">
             {user.username ? (

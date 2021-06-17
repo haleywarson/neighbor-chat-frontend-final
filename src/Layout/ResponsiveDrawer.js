@@ -133,6 +133,8 @@ function ResponsiveDrawer(props) {
           handleClose={handleChatClose}
           user={props.user}
           allUsers={props.allUsers}
+          myContactsIds={props.myContactsIds}
+          setMyContactsIds={props.setMyContactsIds}
         />
       </Dialog>
       <CssBaseline />

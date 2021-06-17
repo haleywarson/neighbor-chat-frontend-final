@@ -23,16 +23,16 @@ const useStyles = makeStyles((theme) => ({
 
 export default function ChatsDialog(props) {
   const classes = useStyles();
-  const [myContacts, setMyContacts] = useState([]);
 
   const handleChange = (event) => {
     console.log("event target val", event.target.value);
-    setMyContacts([...myContacts, event.target.value]);
+    props.setMyContactsIds([...props.myContactsIds, event.target.value]);
   };
 
-  const addContact = (newContact) => {
-    console.log("submitting new contact:", newContact);
-    console.log("my contacts list:", myContacts);
+  const addContact = (newContactId) => {
+    console.log("submitting new contact:", newContactId);
+    console.log("my contacts list:", props.myContactsIds);
+    props.handleClose();
   };
 
   return (
