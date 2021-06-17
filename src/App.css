@@ -141,3 +141,41 @@ img {
   color: #375058;
   margin: 0.2em;
 }
+
+/* || Profile */
+
+.profile {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.profile-card {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+/* Chat dialog box */
+#chats-dialog-title {
+  color: #375058;
+  font-family: "Playfair Display", serif;
+  font-size: 1.5rem;
+}
+
+#chats-dialog-prompt {
+  color: #375058;
+  font-family: "Lato", sans-serif;
+  font-size: 1rem;
+}
+
+#chats-dialog-input-starter {
+  color: #375058;
+  font-family: "Lato", sans-serif;
+  font-size: 1rem;
+}
+
+#chats-dialog button {
+  color: #c95254;
+}

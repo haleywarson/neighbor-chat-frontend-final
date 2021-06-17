@@ -113,20 +113,11 @@ function App() {
       <Layout user={user} logout={logout} allUsers={allUsers}>
         <Switch>
           <Route path="/profile">
-            {user.length > 0 ? (
+            {user.username ? (
               <Profile user={user} validateUser={validateUser} />
             ) : null}
           </Route>
           <Route path="/">
-            {/* <Home           
-              user={user}
-              validateUser={validateUser}
-              signup={signup}
-              login={login}
-              error={error}
-              displayLogin={displayLogin}
-              loginFormToggle={loginFormToggle}
-            /> */}
             {user.username ? (
               <ChatScreen
                 user={user}

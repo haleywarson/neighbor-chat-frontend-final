@@ -111,7 +111,7 @@ function ResponsiveDrawer(props) {
             id="start-chat-btn"
             onClick={() => handleChatOpen()}
           >
-            Start chat
+            Add contact
           </Button>
         </MenuItem>
       </MenuList>

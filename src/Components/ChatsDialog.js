@@ -23,24 +23,31 @@ const useStyles = makeStyles((theme) => ({
 
 export default function ChatsDialog(props) {
   const classes = useStyles();
-  const [recipient, setRecipient] = useState("");
+  const [myContacts, setMyContacts] = useState([]);
 
   const handleChange = (event) => {
-    setRecipient(event.target.value);
+    console.log("event target val", event.target.value);
+    setMyContacts([...myContacts, event.target.value]);
   };
 
-  const handleSubmit = (event) => {
-    event.preventDefault();
-    console.log("submitting");
+  const addContact = (newContact) => {
+    console.log("submitting new contact:", newContact);
+    console.log("my contacts list:", myContacts);
   };
 
   return (
-    <div className="chats-dialog">
-      <DialogTitle id="form-dialog-title">Start a chat</DialogTitle>
+    <div id="chats-dialog">
+      <DialogTitle id="form-dialog-title">
+        <h2 id="chats-dialog-title">Add contact</h2>
+      </DialogTitle>
       <DialogContent>
-        <DialogContentText>Add a neighbor to start a chat.</DialogContentText>
-        <FormControl className={classes.formControl} onSubmit={handleSubmit}>
-          <InputLabel id="demo-simple-select-label">Add neighbor</InputLabel>
+        <DialogContentText id="chats-dialog-text">
+          <p id="chats-dialog-prompt">Add a neighbor to your contacts list.</p>
+        </DialogContentText>
+        <FormControl className={classes.formControl}>
+          <InputLabel id="demo-simple-select-label">
+            <p id="chats-dialog-input-starter">Add neighbor</p>
+          </InputLabel>
           <Select
             labelId="demo-simple-select-label"
             id="demo-simple-select"
@@ -58,8 +65,11 @@ export default function ChatsDialog(props) {
         <Button onClick={props.handleClose} color="primary">
           Cancel
         </Button>
-        <Button onClick={props.handleClose} color="primary">
-          Start chat
+        <Button
+          onClick={(event) => addContact(event.target.value)}
+          color="primary"
+        >
+          Add contact
         </Button>
       </DialogActions>
     </div>
