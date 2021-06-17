@@ -206,13 +206,23 @@ img {
 
 /* Neighbors */
 
-.user-card {
+.neighbors {
   display: flex;
+  flex-flow: row wrap;
   justify-content: center;
   align-items: center;
-  overflow: scroll;
 }
 
 #neighbor-card {
+  min-width: 3em;
+  flex-grow: 1;
+  flex-basis: 3em;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
   margin: 0.5em;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
 }

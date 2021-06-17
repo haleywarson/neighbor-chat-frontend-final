@@ -13,9 +13,9 @@ export default function Neighbors({ allUsers, validateUser }) {
   };
 
   return (
-    <div className="neighbors">
+    <>
       <h2>Neighbors</h2>
-      {displayNeighbors()}
-    </div>
+      <div className="neighbors">{displayNeighbors()}</div>
+    </>
   );
 }
