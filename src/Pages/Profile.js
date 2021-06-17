@@ -1,7 +1,8 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 
 import "../App.css";
-import defaultProfilePic from "../Assets/DefaultProfilePic.png";
+import defaultProfilePic from "../Assets/DefaultProfilePic1.png";
+import UpdateProfileForm from "../Components/UpdateProfileForm";
 
 import { makeStyles } from "@material-ui/core/styles";
 import Card from "@material-ui/core/Card";
@@ -24,7 +25,7 @@ const useStyles = makeStyles({
 export default function Profile({ user, validateUser }) {
   const classes = useStyles();
 
-  const editMyProfile = () => {};
+  const [profileEdit, setProfileEdit] = useState(false);
 
   //   fetch user and set user data to state
   useEffect(() => {
@@ -34,37 +35,48 @@ export default function Profile({ user, validateUser }) {
   return (
     <div className="profile">
       <Card className={classes.root}>
-        <CardActionArea>
-          <CardMedia
-            className={classes.media}
-            image={defaultProfilePic}
-            id="default-profile-pic"
-            title="Contemplative Reptile"
+        {profileEdit ? (
+          <UpdateProfileForm
+            setProfileEdit={setProfileEdit}
+            validateUser={validateUser}
+            user={user}
           />
-          <CardContent id="profile-name">
-            <Typography gutterBottom variant="h5" component="h2">
-              {user.username}
-            </Typography>
-            <Typography
-              variant="body2"
-              color="textSecondary"
-              component="p"
-              id="profile-content"
-            >
-              Address: 1234 Cedar Lane
-            </Typography>
-          </CardContent>
-        </CardActionArea>
-        <CardActions>
-          <Button
-            size="small"
-            color="primary"
-            id="profile-edit-btn"
-            onClick={() => editMyProfile()}
-          >
-            Edit
-          </Button>
-        </CardActions>
+        ) : (
+          <>
+            <CardActionArea>
+              <CardMedia
+                className={classes.media}
+                image={defaultProfilePic}
+                id="default-profile-pic"
+                title="Contemplative Reptile"
+              />
+              <CardContent id="profile-name">
+                <Typography gutterBottom variant="h5" component="h2">
+                  {user.username}
+                </Typography>
+                <Typography
+                  variant="body2"
+                  color="textSecondary"
+                  component="p"
+                  id="profile-content"
+                >
+                  Address: Enter address here.
+                  {/* {user.address ? { user.address } : "None listed."} */}
+                </Typography>
+              </CardContent>
+            </CardActionArea>
+            <CardActions>
+              <Button
+                size="small"
+                color="primary"
+                id="profile-edit-btn"
+                onClick={() => setProfileEdit(true)}
+              >
+                Edit
+              </Button>
+            </CardActions>
+          </>
+        )}
       </Card>
     </div>
   );

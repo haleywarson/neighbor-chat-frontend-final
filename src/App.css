@@ -174,8 +174,10 @@ img {
 }
 
 #default-profile-pic {
-  width: 50%;
   margin: auto;
+  margin-top: 0.5em;
+  width: 55%;
+  opacity: 0.8;
 }
 
 #profile-name {
