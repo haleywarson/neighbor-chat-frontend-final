@@ -16,10 +16,10 @@ function App() {
   // STATE
   const [user, setUser] = useState({});
   const [allUsers, setAllUsers] = useState([]);
-  // user includes username, password, id
+
   const [error, setError] = useState("");
+
   const [myContactsIds, setMyContactsIds] = useState([]);
-  // user includes username, password, id
 
   // is user logged in
   const [loginFormToggle, setLoginFormToggle] = useState(false);

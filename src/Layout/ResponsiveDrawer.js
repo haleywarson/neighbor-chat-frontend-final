@@ -55,7 +55,6 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 function ResponsiveDrawer(props) {
-  // Dialog box state + actions
   const [open, setOpen] = React.useState(false);
 
   const handleChatClose = () => {

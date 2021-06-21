@@ -27,7 +27,6 @@ export default function Profile({ user, validateUser }) {
 
   const [profileEdit, setProfileEdit] = useState(false);
 
-  //   fetch user and set user data to state
   useEffect(() => {
     validateUser();
   }, []);

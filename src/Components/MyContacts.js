@@ -25,7 +25,6 @@ export default function MyContacts(props) {
 
   const editMyProfile = () => {};
 
-  //   fetch user and set user data to state
   useEffect(() => {
     validateUser();
   }, []);

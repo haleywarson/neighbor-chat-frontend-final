@@ -3,7 +3,6 @@ import React, { useEffect } from "react";
 import UserCard from "../Components/UserCard";
 
 export default function Neighbors({ allUsers, validateUser }) {
-  //   fetch user and set user data to state
   useEffect(() => {
     validateUser();
   }, []);
