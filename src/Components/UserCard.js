@@ -20,10 +20,18 @@ const useStyles = makeStyles({
   },
 });
 
-export default function UserCard({ user }) {
+export default function UserCard({
+  user,
+  saveContact,
+  newContactId,
+  setNewContactId,
+}) {
   const classes = useStyles();
 
-  const addContact = (newContact) => {};
+  const addContact = () => {
+    setNewContactId(user.id);
+    saveContact();
+  };
 
   return (
     <div className="user-card">
@@ -50,11 +58,7 @@ export default function UserCard({ user }) {
           </CardContent>
         </CardActionArea>
         <CardActions>
-          <Button
-            variant="outlined"
-            id="start-chat-btn"
-            onClick={(event) => addContact(event.target)}
-          >
+          <Button variant="outlined" id="start-chat-btn" onClick={addContact}>
             Add contact
           </Button>
         </CardActions>

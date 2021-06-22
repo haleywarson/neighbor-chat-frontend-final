@@ -212,6 +212,10 @@ img {
   color: #c95254;
 }
 
+#profile-card {
+  min-width: 90%;
+}
+
 /* Neighbors/Contacts */
 
 .neighbors,

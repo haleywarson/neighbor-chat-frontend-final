@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { Link } from "react-router-dom";
 
 import Logo from "../Assets/Logo6.png";
@@ -103,21 +103,6 @@ function ResponsiveDrawer(props) {
           My Contacts
         </MenuItem>
         <MenuList id="my-contacts-nav-list">
-          {/* {props.user.friends
-            ? props.user.friends.map((friend) => {
-                return (
-                  <MenuItem
-                    id="nested-nav-link"
-                    key={friend.id}
-                    className={classes.nested}
-                    // component={Link}
-                    // to={`/chat/${id}`}
-                  >
-                    {friend.username}
-                  </MenuItem>
-                );
-              })
-            : null} */}
           {props.user.friends
             ? props.user.friends.map((user) => {
                 return (
@@ -149,6 +134,11 @@ function ResponsiveDrawer(props) {
 
   const container =
     window !== undefined ? () => window().document.body : undefined;
+
+  useEffect(() => {
+    // eslint-disable-next-line
+    props.validateUser();
+  }, [props.user]);
 
   return (
     <div className={classes.root}>

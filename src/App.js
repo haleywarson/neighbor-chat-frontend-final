@@ -24,9 +24,6 @@ function App() {
 
   const [newContactId, setNewContactId] = useState(0);
 
-  // const [myContacts, setMyContacts] = useState([]);
-
-  // is user logged in
   const [loginFormToggle, setLoginFormToggle] = useState(false);
 
   // SIGNUP AND LOGIN/OUT
@@ -153,6 +150,7 @@ function App() {
         saveContact={saveContact}
         handleContactChange={handleContactChange}
         myContacts={myContacts}
+        validateUser={validateUser}
       >
         <Switch>
           <Route path="/profile">
@@ -165,7 +163,13 @@ function App() {
             ) : null}
           </Route>
           <Route path="/neighbors">
-            <Neighbors allUsers={allUsers} validateUser={validateUser} />
+            <Neighbors
+              allUsers={allUsers}
+              newContactId={newContactId}
+              setNewContactId={setNewContactId}
+              saveContact={saveContact}
+              validateUser={validateUser}
+            />
           </Route>
           <Route path="/contacts">
             <Contacts

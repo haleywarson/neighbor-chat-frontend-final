@@ -36,7 +36,7 @@ export default function Profile({ user, validateUser, setUser }) {
     <>
       <h2>Your profile</h2>
       <div className="profile">
-        <Card className={classes.root}>
+        <Card className={classes.root} id="profile-card">
           {profileEdit ? (
             <UpdateProfileForm
               setProfileEdit={setProfileEdit}
