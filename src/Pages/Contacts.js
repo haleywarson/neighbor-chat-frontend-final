@@ -2,20 +2,22 @@ import React, { useEffect } from "react";
 
 import UserCard from "../Components/UserCard";
 
-export default function Contacts({ myContacts, validateUser, user }) {
+export default function Contacts({ validateUser, user }) {
   useEffect(() => {
     // eslint-disable-next-line
     validateUser();
   }, []);
 
   const displayMyContacts = () => {
-    return myContacts.map((user) => <UserCard user={user} key={user.id} />);
+    return user.friends.map((user) => <UserCard user={user} key={user.id} />);
   };
 
   return (
     <>
       <h2>My contacts</h2>
-      <div className="my-contacts">{displayMyContacts()}</div>
+      <div className="my-contacts">
+        {user.friends ? displayMyContacts() : null}
+      </div>
     </>
   );
 }

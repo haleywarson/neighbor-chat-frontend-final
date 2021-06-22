@@ -118,17 +118,17 @@ function ResponsiveDrawer(props) {
                 );
               })
             : null} */}
-          {props.myContacts
-            ? props.myContacts.map((contact) => {
+          {props.user.friends
+            ? props.user.friends.map((user) => {
                 return (
                   <MenuItem
                     id="nested-nav-link"
-                    key={contact.id}
+                    key={user.id}
                     className={classes.nested}
                     // component={Link}
                     // to={`/chat/${id}`}
                   >
-                    My neighbor: {contact}
+                    {user.username}
                   </MenuItem>
                 );
               })

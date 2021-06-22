@@ -22,6 +22,8 @@ function App() {
 
   const [myContacts, setMyContacts] = useState([]);
 
+  const [newContactId, setNewContactId] = useState(0);
+
   // const [myContacts, setMyContacts] = useState([]);
 
   // is user logged in
@@ -65,6 +67,7 @@ function App() {
         if (result.token) {
           localStorage.setItem("token", result.token);
           setUser(result.user);
+          console.log("result user", result.user);
         } else {
           setError(result.error);
         }
@@ -116,12 +119,29 @@ function App() {
   // EVENT HANDLERS
   const handleContactChange = (event) => {
     event.persist();
-    const newContact = event.target.value;
-    setMyContacts([...myContacts, newContact]);
+    const newContactId = event.target.value;
+    setNewContactId(newContactId);
+    setMyContacts([...myContacts, newContactId]);
   };
 
   const saveContact = () => {
-    console.log("saving contacts", myContacts);
+    let token = localStorage.getItem("token");
+    fetch(baseUrl + "friendships", {
+      method: "POST",
+      headers: {
+        Accept: "application/json",
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${token}`,
+      },
+      body: JSON.stringify({
+        friendship: {
+          user_id: user.id,
+          friend_id: newContactId,
+        },
+      }),
+    })
+      .then((response) => response.json())
+      .then((data) => console.log(data));
   };
 
   return (

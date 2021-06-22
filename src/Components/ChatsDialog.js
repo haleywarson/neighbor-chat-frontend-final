@@ -60,7 +60,10 @@ export default function ChatsDialog(props) {
         <Button onClick={props.handleClose} color="primary">
           Cancel
         </Button>
-        <Button onClick={handleSubmit} color="primary">
+        <Button
+          onClick={handleSubmit}
+          color="primary"
+        >
           Add contact
         </Button>
       </DialogActions>
