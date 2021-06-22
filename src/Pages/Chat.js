@@ -10,6 +10,7 @@ export default function Chat({ user, validateUser, allUsers }) {
   const [message, setMessage] = useState("");
 
   useEffect(() => {
+    // eslint-disable-next-line
     validateUser();
     socket.on("connect", () => {
       console.log("socket connected?", socket.connected);

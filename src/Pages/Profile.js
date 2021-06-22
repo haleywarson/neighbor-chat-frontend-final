@@ -22,12 +22,13 @@ const useStyles = makeStyles({
   },
 });
 
-export default function Profile({ user, validateUser }) {
+export default function Profile({ user, validateUser, setUser }) {
   const classes = useStyles();
 
   const [profileEdit, setProfileEdit] = useState(false);
 
   useEffect(() => {
+    // eslint-disable-next-line
     validateUser();
   }, []);
 
@@ -41,13 +42,14 @@ export default function Profile({ user, validateUser }) {
               setProfileEdit={setProfileEdit}
               validateUser={validateUser}
               user={user}
+              setUser={setUser}
             />
           ) : (
             <>
               <CardActionArea>
                 <CardMedia
                   className={classes.media}
-                  image={defaultProfilePic}
+                  image={user.photo ? user.photo : defaultProfilePic}
                   id="default-profile-pic"
                   title="Contemplative Reptile"
                 />
@@ -61,8 +63,7 @@ export default function Profile({ user, validateUser }) {
                     component="p"
                     id="profile-content"
                   >
-                    Address: Enter address here.
-                    {/* {user.address ? { user.address } : "None listed."} */}
+                    {user.address ? user.address : "No address listed."}
                   </Typography>
                 </CardContent>
               </CardActionArea>

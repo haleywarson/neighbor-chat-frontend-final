@@ -19,7 +19,9 @@ function App() {
 
   const [error, setError] = useState("");
 
-  const [myContactsIds, setMyContactsIds] = useState([]);
+  const [myContacts, setMyContacts] = useState([]);
+
+  // const [myContacts, setMyContacts] = useState([]);
 
   // is user logged in
   const [loginFormToggle, setLoginFormToggle] = useState(false);
@@ -72,7 +74,6 @@ function App() {
     let token = localStorage.getItem("token");
     if (token) {
       fetch(baseUrl + "profile", {
-        // use profile route above
         method: "GET",
         headers: {
           Authorization: `Bearer ${token}`,
@@ -111,19 +112,35 @@ function App() {
     fetchAllUsers();
   }, []);
 
+  // Add contact
+
+  const handleContactChange = (event) => {
+    event.persist();
+    const newContact = event.target.value;
+    setMyContacts([...myContacts, newContact]);
+  };
+
+  const saveContact = () => {
+    console.log("saving contacts", myContacts);
+  };
+
   return (
     <Router>
       <Layout
         user={user}
         logout={logout}
         allUsers={allUsers}
-        myContactsIds={myContactsIds}
-        setMyContactsIds={setMyContactsIds}
+        saveContact={saveContact}
+        handleContactChange={handleContactChange}
       >
         <Switch>
           <Route path="/profile">
             {user.username ? (
-              <Profile user={user} validateUser={validateUser} />
+              <Profile
+                user={user}
+                validateUser={validateUser}
+                setUser={setUser}
+              />
             ) : null}
           </Route>
           <Route path="/neighbors">

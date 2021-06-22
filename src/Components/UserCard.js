@@ -23,15 +23,17 @@ const useStyles = makeStyles({
 export default function UserCard({ user }) {
   const classes = useStyles();
 
+  const addContact = (newContact) => {};
+
   return (
     <div className="user-card">
       <Card className={classes.root} id="neighbor-card">
         <CardActionArea>
           <CardMedia
             className={classes.media}
-            image={defaultProfilePic}
+            image={user.photo ? user.photo : defaultProfilePic}
             id="default-profile-pic"
-            title="Contemplative Reptile"
+            title="user-profile-pic"
           />
           <CardContent id="profile-name">
             <Typography gutterBottom variant="h5" component="h2">
@@ -43,8 +45,7 @@ export default function UserCard({ user }) {
               component="p"
               id="profile-content"
             >
-              Address: Enter address here.
-              {/* {user.address ? { user.address } : "None listed."} */}
+              {user.address ? user.address : "No address listed."}
             </Typography>
           </CardContent>
         </CardActionArea>
@@ -52,7 +53,7 @@ export default function UserCard({ user }) {
           <Button
             variant="outlined"
             id="start-chat-btn"
-            onClick={(event) => console.log("adding friend", user.username)}
+            onClick={(event) => addContact(event.target)}
           >
             Add contact
           </Button>

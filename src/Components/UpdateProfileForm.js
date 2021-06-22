@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 
 import defaultProfilePic from "../Assets/DefaultProfilePic1.png";
 
@@ -12,6 +12,8 @@ import Button from "@material-ui/core/Button";
 import Typography from "@material-ui/core/Typography";
 import TextField from "@material-ui/core/TextField";
 
+const baseUrl = "http://localhost:9000/";
+
 const useStyles = makeStyles({
   root: {
     maxWidth: 345,
@@ -21,81 +23,97 @@ const useStyles = makeStyles({
   },
 });
 
-export default function UpdateProfileForm({ user, setProfileEdit }) {
-  const classes = useStyles();
+export default function UpdateProfileForm({ user, setProfileEdit, setUser }) {
+    const classes = useStyles();
 
-  //   const [formValues, setFormValues] = useState({
-  //     username: user.username,
-  //     address: user.address,
-  //   });
+    const [username, setUsername] = useState("");
+    const [photo, setPhoto] = useState("");
+    const [address, setAddress] = useState("");
 
-  const handleChange = (event) => {
-    console.log("event target value", event.target.value);
-    console.log("handling change...");
-    // setFormValues({
-    //     [event.target.name]: event.target.value
-    // })
-  };
+    const handleSubmit = (event) => {
+        event.preventDefault();
+        fetch(baseUrl + "users/" + user.id, {
+        method: "PATCH",
+        headers: {
+            "Content-Type": "application/json",
+            Accept: "application/json",
+        },
+        body: JSON.stringify({
+            user: {
+            username,
+            photo,
+            address,
+            },
+        }),
+        })
+        .then((response) => response.json())
+        .then((updatedUser) => setUser(updatedUser));
+    };
 
-  const updateProfile = (event) => {
-    console.log("updating profile");
-  };
-
-  return (
-    <Card className={classes.root}>
-      <form className={classes.root} noValidate autoComplete="off">
-        <CardActionArea>
-          <CardMedia
-            className={classes.media}
-            image={defaultProfilePic}
-            id="default-profile-pic"
-            title="Contemplative Reptile"
-          />
-          <CardContent id="profile-name">
-            <Typography gutterBottom variant="h5" component="h2">
-              <TextField
-                id="standard-basic"
-                label="Username"
-                name={user.username}
-                value={user.username}
-                onChange={(event) => handleChange(event)}
-              />
-            </Typography>
-            <Typography
-              variant="body2"
-              color="textSecondary"
-              component="p"
-              id="profile-content"
+    return (
+        <Card className={classes.root}>
+        <form className={classes.root} noValidate autoComplete="off">
+            <CardActionArea>
+            <CardMedia
+                className={classes.media}
+                image={defaultProfilePic}
+                id="default-profile-pic"
+                title="Contemplative Reptile"
+            />
+            <CardContent id="profile-name">
+                <Typography gutterBottom variant="h5" component="h2">
+                <TextField
+                    id="standard-basic"
+                    label="Photo"
+                    name="photo"
+                    value={photo}
+                    onChange={(event) => setPhoto(event.target.value)}
+                />
+                </Typography>
+                <Typography gutterBottom variant="h5" component="h2">
+                <TextField
+                    id="standard-basic"
+                    label="Username"
+                    name="username"
+                    value={username}
+                    onChange={(event) => setUsername(event.target.value)}
+                />
+                </Typography>
+                <Typography
+                variant="body2"
+                color="textSecondary"
+                component="p"
+                id="profile-content"
+                >
+                <TextField
+                    id="standard-basic"
+                    label="Address"
+                    name="address"
+                    value={address}
+                    onChange={(event) => setAddress(event.target.value)}
+                />
+                </Typography>
+            </CardContent>
+            </CardActionArea>
+            <CardActions>
+            <Button
+                size="small"
+                color="primary"
+                id="profile-edit-btn"
+                onClick={handleSubmit}
             >
-              <TextField
-                id="standard-basic"
-                label="Address"
-                name={user.username}
-                value={user.username}
-                onChange={(event) => handleChange(event)}
-              />
-            </Typography>
-          </CardContent>
-        </CardActionArea>
-        <CardActions>
-          <Button
-            size="small"
-            color="primary"
-            id="profile-edit-btn"
-            onClick={updateProfile}
-          >
-            Update
-          </Button>
-          <Button
-            size="small"
-            color="primary"
-            id="profile-edit-btn"
-            onClick={() => setProfileEdit(false)}
-          >
-            Cancel
-          </Button>
-        </CardActions>
-      </form>
-    </Card>
-  );
+                Update
+            </Button>
+            <Button
+                size="small"
+                color="primary"
+                id="profile-edit-btn"
+                onClick={() => setProfileEdit(false)}
+            >
+                Cancel
+            </Button>
+            </CardActions>
+        </form>
+        </Card>
+    );
 }

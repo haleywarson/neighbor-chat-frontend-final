@@ -98,23 +98,26 @@ function ResponsiveDrawer(props) {
         <MenuItem id="nav-link" component={Link} to="/neighbors">
           Neighbors
         </MenuItem>
-        {/* add my neighbors/contacts here */}
-        {/* <MenuList>
-        {/props.user.userchats({id, user.username} => {
-            return 
-            <MenuItem 
-            id="nested-nav-link"
-            key={id} 
-            className={classes.nested} 
-            user={user} 
-                otherUser={user.username} 
-                component={Link} 
-                to={`/chat/${id}`} 
-                >
-                {user.username}
-                </MenuItem>;
-              })} 
-        </MenuList> */}
+        <MenuItem id="nav-link" component={Link} to="/neighbors">
+          My Contacts
+        </MenuItem>
+        <MenuList>
+          {props.user.friends
+            ? props.user.friends.map((friend) => {
+                return (
+                  <MenuItem
+                    id="nested-nav-link"
+                    key={friend.id}
+                    className={classes.nested}
+                    // component={Link}
+                    // to={`/chat/${id}`}
+                  >
+                    {friend.username}
+                  </MenuItem>
+                );
+              })
+            : null}
+        </MenuList>
         <MenuItem id="nav-link">
           <Button
             variant="outlined"
@@ -143,8 +146,8 @@ function ResponsiveDrawer(props) {
           handleClose={handleChatClose}
           user={props.user}
           allUsers={props.allUsers}
-          myContactsIds={props.myContactsIds}
-          setMyContactsIds={props.setMyContactsIds}
+          saveContact={props.saveContact}
+          handleContactChange={props.handleContactChange}
         />
       </Dialog>
       <CssBaseline />

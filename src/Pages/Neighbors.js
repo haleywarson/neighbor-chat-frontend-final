@@ -4,11 +4,12 @@ import UserCard from "../Components/UserCard";
 
 export default function Neighbors({ allUsers, validateUser }) {
   useEffect(() => {
+    // eslint-disable-next-line
     validateUser();
   }, []);
 
   const displayNeighbors = () => {
-    return allUsers.map((user) => <UserCard user={user} />);
+    return allUsers.map((user) => <UserCard user={user} key={user.id} />);
   };
 
   return (

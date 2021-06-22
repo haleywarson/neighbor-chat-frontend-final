@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 
 import Button from "@material-ui/core/Button";
 import DialogActions from "@material-ui/core/DialogActions";
@@ -24,14 +24,8 @@ const useStyles = makeStyles((theme) => ({
 export default function ChatsDialog(props) {
   const classes = useStyles();
 
-  const handleChange = (event) => {
-    console.log("event target val", event.target.value);
-    props.setMyContactsIds([...props.myContactsIds, event.target.value]);
-  };
-
-  const addContact = (newContactId) => {
-    console.log("submitting new contact:", newContactId);
-    console.log("my contacts list:", props.myContactsIds);
+  const handleSubmit = () => {
+    props.saveContact();
     props.handleClose();
   };
 
@@ -51,7 +45,8 @@ export default function ChatsDialog(props) {
           <Select
             labelId="demo-simple-select-label"
             id="demo-simple-select"
-            onChange={handleChange}
+            onChange={props.handleContactChange}
+            value={props.allUsers.id}
           >
             {props.allUsers.map((user) => (
               <MenuItem key={user.id} value={user.id}>
@@ -65,10 +60,7 @@ export default function ChatsDialog(props) {
         <Button onClick={props.handleClose} color="primary">
           Cancel
         </Button>
-        <Button
-          onClick={(event) => addContact(event.target.value)}
-          color="primary"
-        >
+        <Button onClick={handleSubmit} color="primary">
           Add contact
         </Button>
       </DialogActions>
