@@ -112,8 +112,7 @@ function App() {
     fetchAllUsers();
   }, []);
 
-  // Add contact
-
+// EVENT HANDLERS
   const handleContactChange = (event) => {
     event.persist();
     const newContact = event.target.value;
@@ -132,6 +131,7 @@ function App() {
         allUsers={allUsers}
         saveContact={saveContact}
         handleContactChange={handleContactChange}
+        myContacts={myContacts}
       >
         <Switch>
           <Route path="/profile">

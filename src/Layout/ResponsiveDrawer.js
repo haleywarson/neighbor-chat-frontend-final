@@ -101,8 +101,8 @@ function ResponsiveDrawer(props) {
         <MenuItem id="nav-link" component={Link} to="/neighbors">
           My Contacts
         </MenuItem>
-        <MenuList>
-          {props.user.friends
+        <MenuList id="my-contacts-nav-list">
+          {/* {props.user.friends
             ? props.user.friends.map((friend) => {
                 return (
                   <MenuItem
@@ -113,6 +113,21 @@ function ResponsiveDrawer(props) {
                     // to={`/chat/${id}`}
                   >
                     {friend.username}
+                  </MenuItem>
+                );
+              })
+            : null} */}
+          {props.myContacts
+            ? props.myContacts.map((contact) => {
+                return (
+                  <MenuItem
+                    id="nested-nav-link"
+                    key={contact.id}
+                    className={classes.nested}
+                    // component={Link}
+                    // to={`/chat/${id}`}
+                  >
+                    My neighbor: {contact}
                   </MenuItem>
                 );
               })
