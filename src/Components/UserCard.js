@@ -29,8 +29,11 @@ export default function UserCard({
   const classes = useStyles();
 
   const addContact = () => {
+    console.log("setting friend state to", user.id);
     setNewContactId(user.id);
-    saveContact();
+    // if (user.id !== 0) {
+    saveContact(user.id);
+    // }
   };
 
   return (

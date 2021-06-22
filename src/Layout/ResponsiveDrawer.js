@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React from "react";
 import { Link } from "react-router-dom";
 
 import Logo from "../Assets/Logo6.png";
@@ -54,6 +54,11 @@ const useStyles = makeStyles((theme) => ({
     paddingLeft: theme.spacing(4),
   },
 }));
+
+// useEffect(() => {
+//   validateUser();
+//   // eslint-disable-next-line
+// }, []);
 
 function ResponsiveDrawer(props) {
   const [open, setOpen] = React.useState(false);
@@ -134,11 +139,6 @@ function ResponsiveDrawer(props) {
 
   const container =
     window !== undefined ? () => window().document.body : undefined;
-
-  useEffect(() => {
-    // eslint-disable-next-line
-    props.validateUser();
-  }, [props.user]);
 
   return (
     <div className={classes.root}>

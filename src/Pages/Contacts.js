@@ -4,8 +4,8 @@ import UserCard from "../Components/UserCard";
 
 export default function Contacts({ validateUser, user }) {
   useEffect(() => {
-    // eslint-disable-next-line
     validateUser();
+    // eslint-disable-next-line
   }, []);
 
   const displayMyContacts = () => {

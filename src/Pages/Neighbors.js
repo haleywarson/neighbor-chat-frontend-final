@@ -8,10 +8,11 @@ export default function Neighbors({
   saveContact,
   newContactId,
   setNewContactId,
+  user,
 }) {
   useEffect(() => {
-    // eslint-disable-next-line
     validateUser();
+    // eslint-disable-next-line
   }, []);
 
   const displayNeighbors = () => {

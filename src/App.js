@@ -64,7 +64,6 @@ function App() {
         if (result.token) {
           localStorage.setItem("token", result.token);
           setUser(result.user);
-          console.log("result user", result.user);
         } else {
           setError(result.error);
         }
@@ -118,27 +117,30 @@ function App() {
     event.persist();
     const newContactId = event.target.value;
     setNewContactId(newContactId);
-    setMyContacts([...myContacts, newContactId]);
   };
 
-  const saveContact = () => {
+  const saveContact = (contactId) => {
+    console.log("saving friend as", newContactId);
+    let contact = contactId ? contactId : newContactId;
     let token = localStorage.getItem("token");
-    fetch(baseUrl + "friendships", {
-      method: "POST",
-      headers: {
-        Accept: "application/json",
-        "Content-Type": "application/json",
-        Authorization: `Bearer ${token}`,
-      },
-      body: JSON.stringify({
-        friendship: {
-          user_id: user.id,
-          friend_id: newContactId,
+    if (contact !== 0) {
+      fetch(baseUrl + "friendships", {
+        method: "POST",
+        headers: {
+          Accept: "application/json",
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${token}`,
         },
-      }),
-    })
-      .then((response) => response.json())
-      .then((data) => console.log(data));
+        body: JSON.stringify({
+          friendship: {
+            user_id: user.id,
+            friend_id: contact,
+          },
+        }),
+      })
+        .then((response) => response.json())
+        .then(validateUser);
+    }
   };
 
   return (
@@ -169,6 +171,7 @@ function App() {
               setNewContactId={setNewContactId}
               saveContact={saveContact}
               validateUser={validateUser}
+              user={user}
             />
           </Route>
           <Route path="/contacts">

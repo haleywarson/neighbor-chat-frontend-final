@@ -28,8 +28,8 @@ export default function Profile({ user, validateUser, setUser }) {
   const [profileEdit, setProfileEdit] = useState(false);
 
   useEffect(() => {
-    // eslint-disable-next-line
     validateUser();
+    // eslint-disable-next-line
   }, []);
 
   return (
