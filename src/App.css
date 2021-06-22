@@ -212,9 +212,10 @@ img {
   color: #c95254;
 }
 
-/* Neighbors */
+/* Neighbors/Contacts */
 
-.neighbors {
+.neighbors,
+.my-contacts {
   display: flex;
   flex-flow: row wrap;
   justify-content: center;

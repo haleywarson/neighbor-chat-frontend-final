@@ -6,6 +6,7 @@ import ChatsDialog from "../Components/ChatsDialog";
 
 import PropTypes from "prop-types";
 import AppBar from "@material-ui/core/AppBar";
+import Divider from "@material-ui/core/Divider";
 import CssBaseline from "@material-ui/core/CssBaseline";
 import Drawer from "@material-ui/core/Drawer";
 import Hidden from "@material-ui/core/Hidden";
@@ -94,11 +95,11 @@ function ResponsiveDrawer(props) {
         >
           Logout
         </MenuItem>
-        {/* <Divider /> */}
+        <Divider />
         <MenuItem id="nav-link" component={Link} to="/neighbors">
           Neighbors
         </MenuItem>
-        <MenuItem id="nav-link" component={Link} to="/neighbors">
+        <MenuItem id="nav-link" component={Link} to="/contacts">
           My Contacts
         </MenuItem>
         <MenuList id="my-contacts-nav-list">

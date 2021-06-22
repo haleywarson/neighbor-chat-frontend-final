@@ -7,6 +7,7 @@ import SignupForm from "./Components/SignupForm";
 import LoginForm from "./Components/LoginForm";
 import Chat from "./Pages/Chat";
 import Neighbors from "./Pages/Neighbors";
+import Contacts from "./Pages/Contacts";
 
 import "./App.css";
 
@@ -112,7 +113,7 @@ function App() {
     fetchAllUsers();
   }, []);
 
-// EVENT HANDLERS
+  // EVENT HANDLERS
   const handleContactChange = (event) => {
     event.persist();
     const newContact = event.target.value;
@@ -145,6 +146,13 @@ function App() {
           </Route>
           <Route path="/neighbors">
             <Neighbors allUsers={allUsers} validateUser={validateUser} />
+          </Route>
+          <Route path="/contacts">
+            <Contacts
+              myContacts={myContacts}
+              validateUser={validateUser}
+              user={user}
+            />
           </Route>
           <Route path="/">
             {user.username ? (
