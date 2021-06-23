@@ -49,7 +49,7 @@ export default function Chat({ user, validateUser, allUsers }) {
             })
           : null}
       </div>
-      <div ref={divRef} style={{ lineHeight: "35px" }}>
+      <div ref={divRef} style={{ lineHeight: "35px", color: "white" }}>
         .
       </div>
       <form id="chat-form" action="" onSubmit={handleSubmit}>

@@ -157,7 +157,7 @@ function ResponsiveDrawer(props) {
         />
       </Dialog>
       <CssBaseline />
-      <AppBar id="nav-bar" position="absolute" className={classes.appBar}>
+      <AppBar id="nav-bar" position="fixed" className={classes.appBar}>
         <Toolbar>
           <IconButton
             color="inherit"
