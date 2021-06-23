@@ -39,7 +39,7 @@ export default function Chat({ user, validateUser, allUsers }) {
                   key={index}
                   message={m.message}
                   user={m.user}
-                  alignItems={isCurrentUser ? "flex-end" : "flex-start"}
+                  alignSelf={isCurrentUser ? "flex-end" : "flex-start"}
                   backgroundColor={isCurrentUser ? "#6899a84f" : "#7da37e5f"}
                 />
               );

@@ -1,14 +1,11 @@
 import React from "react";
 
-export default function Message({
-  message,
-  user,
-  alignItems,
-  backgroundColor,
-}) {
+export default function Message({ message, user, alignSelf, backgroundColor }) {
   const messageListStyle = {
-    color: "#c95254",
+    color: "#375058",
     fontFamily: "Lato",
+    display: "flex",
+    flexDirection: "column",
   };
 
   const messageStyle = {
@@ -19,14 +16,19 @@ export default function Message({
     position: "relative",
     padding: "10px 20px",
     borderRadius: "25px",
+
     backgroundColor: backgroundColor,
-    alignItems: alignItems,
+    alignSelf: alignSelf,
+  };
+
+  const usernameStyle = {
+    alignSelf: alignSelf,
   };
 
   return (
-    <ul style={messageListStyle}>
-      <p>{user}</p>
-      <li style={messageStyle}>{message}</li>
-    </ul>
+    <div style={messageListStyle}>
+      <p style={usernameStyle}>{user}</p>
+      <p style={messageStyle}>{message}</p>
+    </div>
   );
 }
