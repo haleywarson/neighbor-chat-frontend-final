@@ -30,19 +30,22 @@ export default function Chat({ user, validateUser, allUsers }) {
     <div className="chat">
       <h3>Welcome, {user.username}!</h3>
       <br />
-      {/* CHAT FEED */}
-      <ul id="messages-list">
+      <div className="chat-feed">
         {messages.length > 0
-          ? messages.map((message, index) => (
-              <Message
-                key={index}
-                message={message.message}
-                user={message.user}
-              />
-            ))
+          ? messages.map((m, index) => {
+              const isCurrentUser = m.user === user.username;
+              return (
+                <Message
+                  key={index}
+                  message={m.message}
+                  user={m.user}
+                  alignItems={isCurrentUser ? "flex-end" : "flex-start"}
+                  backgroundColor={isCurrentUser ? "#6899a84f" : "#7da37e5f"}
+                />
+              );
+            })
           : null}
-      </ul>
-      {/* CHAT FORM */}
+      </div>
       <form id="chat-form" action="" onSubmit={handleSubmit}>
         <input
           id="chat-input"

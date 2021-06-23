@@ -132,31 +132,6 @@ img {
   font-size: 1rem;
 }
 
-#messages-list {
-  list-style-type: none;
-  margin: 0;
-  padding: 0;
-  color: #c95254;
-  display: flex;
-  flex-direction: column;
-  font-family: "Lato", sans-serif;
-}
-
-#messages-list > li {
-  padding: 0.5rem 1rem;
-  background-color: #6899a84f;
-  border-radius: 13px;
-  color: #375058;
-  margin: 0.2em;
-}
-
-#messages-list > li:nth-child(odd) {
-  background-color: #7da37e5f;
-  border-radius: 13px;
-  color: #375058;
-  margin: 0.2em;
-}
-
 /* Chat dialog box */
 #chats-dialog-title {
   color: #375058;
