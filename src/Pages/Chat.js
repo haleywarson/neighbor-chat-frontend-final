@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import { io } from "socket.io-client";
 
 import Message from "../Components/Message";
@@ -9,8 +9,17 @@ export default function Chat({ user, validateUser, allUsers }) {
   const [messages, setMessages] = useState([]);
   const [message, setMessage] = useState("");
 
+  const divRef = useRef(null);
+
+  const handleSubmit = (event) => {
+    event.preventDefault();
+    socket.emit("chat message", { user: user.username, message });
+    setMessage("");
+  };
+
   useEffect(() => {
     validateUser();
+    divRef.current.scrollIntoView({ behavior: "smooth" });
     socket.on("connect", () => {
       console.log("socket connected?", socket.connected);
     });
@@ -19,12 +28,6 @@ export default function Chat({ user, validateUser, allUsers }) {
     });
     return () => socket.off("chat message");
   }, [messages]);
-
-  const handleSubmit = (event) => {
-    event.preventDefault();
-    socket.emit("chat message", { user: user.username, message });
-    setMessage("");
-  };
 
   return (
     <div className="chat">
@@ -45,6 +48,9 @@ export default function Chat({ user, validateUser, allUsers }) {
               );
             })
           : null}
+      </div>
+      <div ref={divRef} style={{ lineHeight: "35px" }}>
+        .
       </div>
       <form id="chat-form" action="" onSubmit={handleSubmit}>
         <input
