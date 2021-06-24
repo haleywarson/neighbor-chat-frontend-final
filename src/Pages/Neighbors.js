@@ -9,9 +9,11 @@ export default function Neighbors({
   newContactId,
   setNewContactId,
   user,
+  fetchAllUsers,
 }) {
   useEffect(() => {
     validateUser();
+    fetchAllUsers();
     // eslint-disable-next-line
   }, []);
 

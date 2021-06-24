@@ -22,6 +22,8 @@ export default function SignUpForm({ signup, setLoginFormToggle }) {
   const handleSubmit = (event) => {
     event.preventDefault();
     signup(username, password);
+    setUsername("");
+    setPassword("");
   };
 
   return (

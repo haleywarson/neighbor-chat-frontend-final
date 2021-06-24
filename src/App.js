@@ -172,6 +172,7 @@ function App() {
               saveContact={saveContact}
               validateUser={validateUser}
               user={user}
+              fetchAllUsers={fetchAllUsers}
             />
           </Route>
           <Route path="/contacts">
@@ -189,7 +190,7 @@ function App() {
                 allUsers={allUsers}
               />
             ) : (
-              <>
+              <div id="login-container">
                 <SignupForm
                   signup={signup}
                   setLoginFormToggle={setLoginFormToggle}
@@ -197,7 +198,7 @@ function App() {
                 {loginFormToggle ? (
                   <LoginForm login={login} error={error} />
                 ) : null}
-              </>
+              </div>
             )}
           </Route>
         </Switch>

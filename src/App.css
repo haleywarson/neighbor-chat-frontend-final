@@ -7,6 +7,7 @@ light green #7DA37E;
 */
 
 /* Overall */
+
 h2 {
   color: #c95254;
   font-size: 1.5rem;
@@ -50,6 +51,20 @@ img {
 
 /* || Login/Signup */
 
+#login-container {
+  display: flex;
+  flex-direction: column;
+}
+
+#signup-form,
+#login-form {
+  justify-content: center;
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+}
+
 #signup-submit-btn,
 #login-submit-btn {
   color: white;
@@ -59,6 +74,7 @@ img {
 
 #login-form h2,
 #signup-form h2 {
+  width: fit-content;
   color: #c95254;
   padding: 0;
   font-size: 1.5rem;
