@@ -25,7 +25,7 @@ The back end repo for this project can be found [here](https://github.com/haleyw
 
 ## Demo
 
-![Demo](https://youtu.be/pfJHJe_RP2M)
+https://youtu.be/pfJHJe_RP2M
 
 ## Technologies
 
@@ -95,7 +95,7 @@ router.post("/login", (request, response) => {
 
 ## Inspiration
 
-With more and more people working from home, we are seeing and communicating with our neighbors more often. Neighbor Chat was designed to allow for more sharing, helping, and connecting with those who live close by. 
+With the recent shift toward remote work, we are seeing and communicating with our neighbors more often. Neighbor Chat was created as a way to facilitate sharing, helping, and connecting with those who live close by. 
 
 ## Contact
 
