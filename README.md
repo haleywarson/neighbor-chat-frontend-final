@@ -33,6 +33,7 @@ https://youtu.be/pfJHJe_RP2M
 - Node.js
 - Express
 - Socket.io
+- PostgreSQL
 
 ## Setup
 
